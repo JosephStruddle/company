@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PTGA – Software House & IT Services</title>
+  <meta name="description" content="PTGA adalah perusahaan teknologi profesional yang bergerak di bidang Software House, IT Consulting, dan Mobile Development. Solusi digital terpercaya untuk bisnis Anda." />
+  <meta name="keywords" content="software house, IT services, web development, mobile app, konsultan IT, sistem perusahaan, PTGA" />
+  <meta property="og:title" content="PTGA – Software House & IT Services" />
+  <meta property="og:description" content="Solusi teknologi digital terpercaya untuk bisnis Anda." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       DESIGN TOKENS & CSS VARIABLES
+    ============================================= */
+    :root {
+      --black:   #080808;
+      --dark:    #0f0f0f;
+      --dark2:   #161616;
+      --dark3:   #1e1e1e;
+      --navy:    #0d1b3e;
+      --navy2:   #132250;
+      --maroon:  #6b1a2a;
+      --maroon2: #8b2237;
+      --gold:    #c9a84c;
+      --gold2:   #e8c96a;
+      --gold3:   #f5e0a0;
+      --white:   #f8f6f0;
+      --white2:  #d4cfc5;
+      --gray:    #888;
+      --border:  rgba(201,168,76,0.18);
+      --radius:  12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+      --transition:   0.38s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: var(--font-body); }
+    ul { list-style: none; }
+
+    /* =============================================
+       SCROLLBAR
+    ============================================= */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+    /* =============================================
+       NOISE TEXTURE OVERLAY
+    ============================================= */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.6;
+    }
+
+    /* =============================================
+       UTILITY
+    ============================================= */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 100px 0; }
+    .section-sm { padding: 70px 0; }
+
+    .gold-text { color: var(--gold); }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-family: var(--font-body);
+      font-weight: 500;
+      margin-bottom: 14px;
+      opacity: 0.85;
+    }
+    .tag::before { content: '— '; }
+    .tag::after  { content: ' —'; }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--white2);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    /* Gold divider line */
+    .gold-line {
+      width: 56px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 20px 0 36px;
+    }
+    .gold-line.center { margin-left: auto; margin-right: auto; background: linear-gradient(90deg, transparent, var(--gold), transparent); width: 80px; }
+
+    /* =============================================
+       FADE-IN ANIMATION
+    ============================================= */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+    .fade-up.delay-4 { transition-delay: 0.4s; }
+    .fade-up.delay-5 { transition-delay: 0.5s; }
+
+    /* =============================================
+       NAVBAR
+    ============================================= */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      transition: var(--transition);
+    }
+    #navbar.scrolled {
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white2);
+      font-weight: 500;
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform var(--transition);
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    /* Language Toggle */
+    .lang-toggle {
+      display: flex;
+      gap: 2px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 3px;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--white2);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+    .lang-btn.active {
+      background: var(--gold);
+      color: var(--black);
+    }
+    .lang-btn:hover:not(.active) { color: var(--gold); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--white);
+      transition: var(--transition);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(8,8,8,0.97);
+      border-top: 1px solid var(--border);
+      padding: 16px 24px 24px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white2);
+      font-weight: 500;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu .lang-toggle { margin-top: 16px; }
+
+    @media (max-width: 768px) {
+      .nav-links, .lang-toggle { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* =============================================
+       HERO SECTION
+    ============================================= */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-top: 100px;
+    }
+
+    /* Gradient orbs */
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(110px);
+      pointer-events: none;
+    }
+    .orb-navy {
+      width: 640px; height: 640px;
+      background: radial-gradient(circle, rgba(13,27,62,0.65) 0%, transparent 70%);
+      top: -100px; left: -120px;
+    }
+    .orb-maroon {
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(107,26,42,0.45) 0%, transparent 70%);
+      bottom: 60px; right: -80px;
+    }
+    .orb-gold {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+      top: 40%; right: 22%;
+    }
+
+    /* Grid lines background */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow-line {
+      width: 40px; height: 1px;
+      background: var(--gold);
+    }
+    .hero-eyebrow-text {
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7.5vw, 6.2rem);
+      font-weight: 700;
+      line-height: 1.06;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-headline .outline-text {
+      -webkit-text-stroke: 1.5px var(--gold2);
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.12rem);
+      color: var(--white2);
+      max-width: 520px;
+      line-height: 1.78;
+      margin-bottom: 44px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      border: none;
+      border-radius: 4px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.1);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+    .btn-primary:hover::after { transform: translateX(0); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.35); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 15px 32px;
+      border: 1px solid rgba(248,246,240,0.25);
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 72px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white2);
+      margin-top: 6px;
+    }
+
+    /* Floating badge */
+    .hero-badge {
+      position: absolute;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 200px; height: 200px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      background: rgba(14,14,14,0.6);
+      backdrop-filter: blur(8px);
+      animation: rotateBadge 20s linear infinite;
+    }
+    .hero-badge::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px dashed rgba(201,168,76,0.3);
+      border-radius: 50%;
+    }
+    @keyframes rotateBadge {
+      to { transform: translateY(-50%) rotate(360deg); }
+    }
+    .hero-badge-inner { animation: rotateBadgeInner 20s linear infinite reverse; }
+    @keyframes rotateBadgeInner {
+      to { transform: rotate(360deg); }
+    }
+    .hero-badge-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero-badge-text {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white2);
+      margin-top: 4px;
+    }
+    @media (max-width: 900px) { .hero-badge { display: none; } }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white2);
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .scroll-hint svg { width: 20px; }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* =============================================
+       ABOUT SECTION
+    ============================================= */
+    #about {
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+    #about::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    #about::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    .about-text p {
+      color: var(--white2);
+      margin-bottom: 16px;
+      font-size: 0.97rem;
+      line-height: 1.8;
+    }
+
+    .vision-mission {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .vm-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .vm-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+    }
+    .vm-card.vision::before { background: var(--navy2); }
+    .vm-card.misi::before  { background: var(--maroon); }
+    .vm-card:hover { transform: translateX(6px); border-color: rgba(201,168,76,0.3); }
+    .vm-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .vm-card p { font-size: 0.9rem; color: var(--white2); line-height: 1.75; margin: 0; }
+
+    /* =============================================
+       SERVICES SECTION
+    ============================================= */
+    #services {
+      background: var(--black);
+    }
+    .services-header { text-align: center; margin-bottom: 64px; }
+    .services-header .gold-line { margin-left: auto; margin-right: auto; }
+    .services-header .section-sub { margin: 0 auto; text-align: center; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 900px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .services-grid { grid-template-columns: 1fr; } }
+
+    .service-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      group: true;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(13,27,62,0.2), transparent 60%);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .service-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .service-card:hover::after { opacity: 1; }
+
+    .service-icon {
+      width: 54px; height: 54px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      transition: var(--transition);
+    }
+    .service-card:hover .service-icon {
+      background: rgba(201,168,76,0.2);
+      border-color: var(--gold);
+    }
+    .service-icon svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .service-card p { font-size: 0.88rem; color: var(--white2); line-height: 1.72; margin: 0; }
+
+    .service-card.featured {
+      border-color: var(--maroon);
+      background: linear-gradient(135deg, rgba(107,26,42,0.15), var(--dark2));
+    }
+
+    .service-sub {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .service-sub-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--white2);
+    }
+    .service-sub-item::before {
+      content: '';
+      width: 5px; height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* =============================================
+       TECH STACK SECTION
+    ============================================= */
+    #techstack {
+      background: var(--dark);
+      position: relative;
+    }
+    .tech-header { text-align: center; margin-bottom: 60px; }
+    .tech-header .section-sub { margin: 0 auto; text-align: center; }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 18px;
+    }
+    .tech-item {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: var(--transition);
+      cursor: default;
+    }
+    .tech-item:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px);
+      background: rgba(201,168,76,0.05);
+    }
+    .tech-item img {
+      width: 40px; height: 40px;
+      object-fit: contain;
+      filter: brightness(0.85) saturate(0.8);
+      transition: var(--transition);
+    }
+    .tech-item:hover img { filter: brightness(1) saturate(1); }
+    .tech-item-name {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--white2);
+      text-align: center;
+    }
+    .tech-item:hover .tech-item-name { color: var(--gold); }
+
+    /* SVG Icon fallback */
+    .tech-svg {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tech-svg svg { width: 36px; height: 36px; }
+
+    /* =============================================
+       PORTFOLIO SECTION
+    ============================================= */
+    #portfolio {
+      background: var(--black);
+    }
+    .portfolio-header { text-align: center; margin-bottom: 64px; }
+    .portfolio-header .section-sub { margin: 0 auto; text-align: center; }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 900px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .portfolio-grid { grid-template-columns: 1fr; } }
+
+    /* -----------------------------------------------
+       Portfolio Item Start
+       Duplicate this block to add more portfolio
+    ----------------------------------------------- */
+    .portfolio-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .portfolio-card:hover {
+      border-color: rgba(201,168,76,0.4);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+    .portfolio-img {
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: var(--navy);
+      position: relative;
+    }
+    .portfolio-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .portfolio-card:hover .portfolio-img img { transform: scale(1.05); }
+    .portfolio-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .portfolio-img-placeholder svg { width: 36px; height: 36px; stroke: var(--gold); fill: none; stroke-width: 1; opacity: 0.5; }
+    .portfolio-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: var(--maroon);
+      color: var(--white);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    .portfolio-body { padding: 24px 26px; }
+    .portfolio-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .portfolio-body p { font-size: 0.85rem; color: var(--white2); line-height: 1.7; margin: 0; }
+    .portfolio-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .portfolio-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    /* Portfolio Item End ----------------------------------------------- */
+
+    /* =============================================
+       CONTACT SECTION
+    ============================================= */
+    #contact {
+      background: var(--dark);
+      position: relative;
+    }
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    .contact-info h2 { margin-bottom: 8px; }
+    .contact-info .section-sub { margin-bottom: 40px; }
+
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .contact-detail-icon {
+      width: 42px; height: 42px;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-detail-icon svg { width: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .contact-detail-text { font-size: 0.88rem; color: var(--white2); line-height: 1.6; }
+    .contact-detail-text strong { display: block; color: var(--white); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 18px; }
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-group label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white2);
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group textarea {
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      padding: 14px 18px;
+      transition: border-color var(--transition);
+      outline: none;
+      width: 100%;
+      resize: vertical;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--gray); }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { min-height: 130px; }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 24px;
+      background: rgba(201,168,76,0.06);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--gold);
+      font-size: 0.9rem;
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    #footer {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      padding: 48px 0 32px;
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--gold); }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white2);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-social {
+      display: flex;
+      gap: 14px;
+    }
+    .social-btn {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .social-btn:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); }
+    .social-btn svg { width: 16px; stroke: var(--white2); fill: none; stroke-width: 1.5; }
+    .social-btn:hover svg { stroke: var(--gold); }
+
+    .footer-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--gray);
+      letter-spacing: 0.04em;
+    }
+    .footer-copy span { color: var(--gold); }
+
+    /* =============================================
+       LANGUAGE (hidden class)
+    ============================================= */
+    [data-lang] { display: none; }
+    [data-lang].lang-active { display: block; }
+    .inline-lang { display: none; }
+    .inline-lang.lang-active { display: inline; }
+
+    /* For inline elements in headings */
+    h1 [data-lang], h2 [data-lang], h3 [data-lang],
+    p [data-lang], span[data-lang], a[data-lang], button[data-lang] {
+      display: none;
+    }
+    h1 [data-lang].lang-active, h2 [data-lang].lang-active,
+    h3 [data-lang].lang-active, p [data-lang].lang-active,
+    span[data-lang].lang-active, a[data-lang].lang-active,
+    button[data-lang].lang-active {
+      display: inline;
+    }
+
+    /* Fix: text nodes without wrapper → use span */
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">PT<span>GA</span></a>
+      <div class="nav-links">
+        <a href="#about"><span data-lang="id" class="lang-active">Tentang</span><span data-lang="en">About</span></a>
+        <a href="#services"><span data-lang="id" class="lang-active">Layanan</span><span data-lang="en">Services</span></a>
+        <a href="#techstack">Tech Stack</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact"><span data-lang="id" class="lang-active">Kontak</span><span data-lang="en">Contact</span></a>
+        <div class="lang-toggle">
+          <button class="lang-btn active" onclick="setLang('id')">ID</button>
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="toggleMenu()"><span data-lang="id" class="lang-active">Tentang</span><span data-lang="en">About</span></a>
+    <a href="#services" onclick="toggleMenu()"><span data-lang="id" class="lang-active">Layanan</span><span data-lang="en">Services</span></a>
+    <a href="#techstack" onclick="toggleMenu()">Tech Stack</a>
+    <a href="#portfolio" onclick="toggleMenu()">Portfolio</a>
+    <a href="#contact" onclick="toggleMenu()"><span data-lang="id" class="lang-active">Kontak</span><span data-lang="en">Contact</span></a>
+    <div class="lang-toggle" style="margin-top:16px">
+      <button class="lang-btn active" onclick="setLang('id')">ID</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO SECTION
+============================================================ -->
+<section id="hero">
+  <div class="hero-orb orb-navy"></div>
+  <div class="hero-orb orb-maroon"></div>
+  <div class="hero-orb orb-gold"></div>
+  <div class="hero-grid"></div>
+
+  <div class="container hero-content">
+    <div class="hero-eyebrow fade-up">
+      <div class="hero-eyebrow-line"></div>
+      <span class="hero-eyebrow-text">
+        <span data-lang="id" class="lang-active">Teknologi · Inovasi · Solusi</span>
+        <span data-lang="en">Technology · Innovation · Solutions</span>
+      </span>
+    </div>
+
+    <h1 class="hero-headline fade-up delay-1">
+      <span data-lang="id" class="lang-active">
+        <em>Membangun</em> Masa<br />Depan Digital<br /><span class="outline-text">Bisnis Anda</span>
+      </span>
+      <span data-lang="en">
+        <em>Building</em> Your<br />Digital Business<br /><span class="outline-text">Future</span>
+      </span>
+    </h1>
+
+    <p class="hero-sub fade-up delay-2">
+      <span data-lang="id" class="lang-active">
+        PTGA menghadirkan solusi teknologi kelas enterprise — dari pengembangan software, IT consulting, hingga aplikasi mobile yang mendorong pertumbuhan bisnis Anda.
+      </span>
+      <span data-lang="en">
+        PTGA delivers enterprise-class technology solutions — from software development and IT consulting to mobile applications that accelerate your business growth.
+      </span>
+    </p>
+
+    <div class="hero-cta fade-up delay-3">
+      <a href="#contact" class="btn-primary">
+        <svg viewBox="0 0 24 24" width="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span data-lang="id" class="lang-active">Hubungi Kami</span>
+        <span data-lang="en">Contact Us</span>
+      </a>
+      <a href="#services" class="btn-outline">
+        <span data-lang="id" class="lang-active">Lihat Layanan</span>
+        <span data-lang="en">View Services</span>
+        <svg viewBox="0 0 24 24" width="16" stroke="currentColor" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+      </a>
+    </div>
+
+    <div class="hero-stats fade-up delay-4">
+      <div>
+        <div class="hero-stat-num">50+</div>
+        <div class="hero-stat-label">
+          <span data-lang="id" class="lang-active">Proyek Selesai</span>
+          <span data-lang="en">Projects Done</span>
+        </div>
+      </div>
+      <div>
+        <div class="hero-stat-num">30+</div>
+        <div class="hero-stat-label">
+          <span data-lang="id" class="lang-active">Klien Puas</span>
+          <span data-lang="en">Happy Clients</span>
+        </div>
+      </div>
+      <div>
+        <div class="hero-stat-num">5+</div>
+        <div class="hero-stat-label">
+          <span data-lang="id" class="lang-active">Tahun Pengalaman</span>
+          <span data-lang="en">Years Experience</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-badge fade-up delay-5">
+    <div class="hero-badge-inner">
+      <div class="hero-badge-num">A+</div>
+      <div class="hero-badge-text">
+        <span data-lang="id" class="lang-active">Kualitas<br/>Terjamin</span>
+        <span data-lang="en">Quality<br/>Assured</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Scroll
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT SECTION
+============================================================ -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <span class="tag">
+          <span data-lang="id" class="lang-active">Tentang Kami</span>
+          <span data-lang="en">About Us</span>
+        </span>
+        <h2 class="section-title">
+          <span data-lang="id" class="lang-active">Kami Adalah Mitra Teknologi Terpercaya Anda</span>
+          <span data-lang="en">We Are Your Trusted Technology Partner</span>
+        </h2>
+        <div class="gold-line"></div>
+        <p data-lang="id" class="lang-active">
+          PTGA adalah perusahaan teknologi yang bergerak di bidang Software House, IT Services, dan pengembangan solusi digital. Kami hadir untuk membantu bisnis Anda bertransformasi secara digital dengan solusi yang tepat, efisien, dan inovatif.
+        </p>
+        <p data-lang="en">
+          PTGA is a technology company specializing in Software House, IT Services, and digital solution development. We help businesses transform digitally with precise, efficient, and innovative solutions.
+        </p>
+        <p data-lang="id" class="lang-active">
+          Dengan tim yang berpengalaman dan berkomitmen, kami menghadirkan produk berkualitas tinggi yang dirancang untuk memenuhi kebutuhan spesifik setiap klien — dari startup hingga enterprise.
+        </p>
+        <p data-lang="en">
+          With an experienced and committed team, we deliver high-quality products designed to meet the specific needs of each client — from startups to enterprise-level organizations.
+        </p>
+      </div>
+
+      <div class="vision-mission fade-up delay-2">
+        <div class="vm-card vision">
+          <h4>
+            <span data-lang="id" class="lang-active">🔭 Visi</span>
+            <span data-lang="en">🔭 Vision</span>
+          </h4>
+          <p data-lang="id" class="lang-active">
+            Menjadi perusahaan teknologi terkemuka di Indonesia yang mampu bersaing secara global, dengan menghadirkan solusi digital inovatif yang memberdayakan bisnis di berbagai industri.
+          </p>
+          <p data-lang="en">
+            To become a leading technology company in Indonesia capable of competing globally, delivering innovative digital solutions that empower businesses across various industries.
+          </p>
+        </div>
+        <div class="vm-card misi">
+          <h4>
+            <span data-lang="id" class="lang-active">🎯 Misi</span>
+            <span data-lang="en">🎯 Mission</span>
+          </h4>
+          <p data-lang="id" class="lang-active">
+            Memberikan layanan teknologi berkualitas tinggi, membangun hubungan jangka panjang dengan klien, dan terus berinovasi untuk menciptakan solusi yang relevan, andal, dan bernilai tinggi bagi setiap klien kami.
+          </p>
+          <p data-lang="en">
+            To deliver high-quality technology services, build long-term client relationships, and continuously innovate to create relevant, reliable, and high-value solutions for every client we serve.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES SECTION
+============================================================ -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="services-header fade-up">
+      <span class="tag">
+        <span data-lang="id" class="lang-active">Layanan Kami</span>
+        <span data-lang="en">Our Services</span>
+      </span>
+      <h2 class="section-title">
+        <span data-lang="id" class="lang-active">Solusi Lengkap untuk Kebutuhan Digital</span>
+        <span data-lang="en">Complete Solutions for Digital Needs</span>
+      </h2>
+      <div class="gold-line center"></div>
+      <p class="section-sub">
+        <span data-lang="id" class="lang-active">Dari konsultasi hingga implementasi, kami siap mendampingi setiap langkah transformasi digital bisnis Anda.</span>
+        <span data-lang="en">From consulting to implementation, we're ready to support every step of your business's digital transformation.</span>
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Card 1 -->
+      <div class="service-card fade-up delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h3>
+          <span data-lang="id" class="lang-active">Konsultan IT</span>
+          <span data-lang="en">IT Consulting</span>
+        </h3>
+        <p data-lang="id" class="lang-active">Strategi digital menyeluruh untuk mengoptimalkan infrastruktur dan proses bisnis Anda dengan teknologi terkini.</p>
+        <p data-lang="en">Comprehensive digital strategy to optimize your business infrastructure and processes with the latest technology.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="service-card fade-up delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <h3>
+          <span data-lang="id" class="lang-active">Service HP</span>
+          <span data-lang="en">Phone Repair</span>
+        </h3>
+        <p data-lang="id" class="lang-active">Jasa service dan perbaikan iPhone & Android dengan teknisi berpengalaman dan spare part berkualitas original.</p>
+        <p data-lang="en">iPhone & Android repair service with experienced technicians and original-quality spare parts.</p>
+        <div class="service-sub">
+          <div class="service-sub-item">iPhone (All Series)</div>
+          <div class="service-sub-item">Android (Samsung, Xiaomi, dll)</div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="service-card fade-up delay-3">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        </div>
+        <h3>
+          <span data-lang="id" class="lang-active">Website Company Profile</span>
+          <span data-lang="en">Company Profile Website</span>
+        </h3>
+        <p data-lang="id" class="lang-active">Desain dan pengembangan website company profile modern, responsif, dan SEO-friendly untuk meningkatkan citra profesional bisnis Anda.</p>
+        <p data-lang="en">Modern, responsive, and SEO-friendly company profile website design and development to enhance your business's professional image.</p>
+      </div>
+
+      <!-- Card 4 (featured) -->
+      <div class="service-card featured fade-up delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>
+          <span data-lang="id" class="lang-active">Sistem Perusahaan</span>
+          <span data-lang="en">Enterprise Systems</span>
+        </h3>
+        <p data-lang="id" class="lang-active">Pembangunan sistem manajemen bisnis terintegrasi sesuai kebutuhan operasional spesifik perusahaan Anda.</p>
+        <p data-lang="en">Development of integrated business management systems tailored to your company's specific operational needs.</p>
+        <div class="service-sub">
+          <div class="service-sub-item">
+            <span data-lang="id" class="lang-active">Sistem POS (Point of Sale)</span>
+            <span data-lang="en">POS System (Point of Sale)</span>
+          </div>
+          <div class="service-sub-item">
+            <span data-lang="id" class="lang-active">Manajemen Aset</span>
+            <span data-lang="en">Asset Management</span>
+          </div>
+          <div class="service-sub-item">
+            <span data-lang="id" class="lang-active">Absensi Online</span>
+            <span data-lang="en">Online Attendance</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="service-card fade-up delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>
+          <span data-lang="id" class="lang-active">Aplikasi Mobile</span>
+          <span data-lang="en">Mobile Application</span>
+        </h3>
+        <p data-lang="id" class="lang-active">Pengembangan aplikasi mobile cross-platform Android & iOS menggunakan Flutter dengan performa tinggi dan UI yang elegan.</p>
+        <p data-lang="en">Cross-platform Android & iOS mobile application development using Flutter with high performance and elegant UI.</p>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="service-card fade-up delay-3">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/></svg>
+        </div>
+        <h3>
+          <span data-lang="id" class="lang-active">Custom Software</span>
+          <span data-lang="en">Custom Software</span>
+        </h3>
+        <p data-lang="id" class="lang-active">Pengembangan perangkat lunak khusus yang dibangun dari nol sesuai workflow dan kebutuhan unik bisnis Anda.</p>
+        <p data-lang="en">Custom software development built from scratch to match your business's unique workflow and requirements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TECH STACK SECTION
+============================================================ -->
+<section id="techstack" class="section">
+  <div class="container">
+    <div class="tech-header fade-up">
+      <span class="tag">
+        <span data-lang="id" class="lang-active">Teknologi</span>
+        <span data-lang="en">Technology</span>
+      </span>
+      <h2 class="section-title">
+        <span data-lang="id" class="lang-active">Teknologi yang Kami Kuasai</span>
+        <span data-lang="en">Technologies We Master</span>
+      </h2>
+      <div class="gold-line center"></div>
+      <p class="section-sub">
+        <span data-lang="id" class="lang-active">Kami menggunakan stack teknologi modern dan battle-tested untuk memastikan solusi Anda scalable, aman, dan berkinerja tinggi.</span>
+        <span data-lang="en">We use modern and battle-tested technology stacks to ensure your solutions are scalable, secure, and high-performing.</span>
+      </p>
+    </div>
+
+    <div class="tech-grid">
+      <!-- PHP -->
+      <div class="tech-item fade-up delay-1">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/php/777BB4" alt="PHP" loading="lazy" />
+        </div>
+        <div class="tech-item-name">PHP</div>
+      </div>
+      <!-- Laravel -->
+      <div class="tech-item fade-up delay-1">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/laravel/FF2D20" alt="Laravel" loading="lazy" />
+        </div>
+        <div class="tech-item-name">Laravel</div>
+      </div>
+      <!-- CodeIgniter -->
+      <div class="tech-item fade-up delay-2">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/codeigniter/EF4223" alt="CodeIgniter" loading="lazy" />
+        </div>
+        <div class="tech-item-name">CodeIgniter</div>
+      </div>
+      <!-- JavaScript -->
+      <div class="tech-item fade-up delay-2">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" loading="lazy" />
+        </div>
+        <div class="tech-item-name">JavaScript</div>
+      </div>
+      <!-- TypeScript -->
+      <div class="tech-item fade-up delay-3">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript" loading="lazy" />
+        </div>
+        <div class="tech-item-name">TypeScript</div>
+      </div>
+      <!-- React -->
+      <div class="tech-item fade-up delay-3">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/react/61DAFB" alt="React" loading="lazy" />
+        </div>
+        <div class="tech-item-name">React</div>
+      </div>
+      <!-- Next.js -->
+      <div class="tech-item fade-up delay-1">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/nextdotjs/FFFFFF" alt="Next.js" loading="lazy" />
+        </div>
+        <div class="tech-item-name">Next.js</div>
+      </div>
+      <!-- NestJS -->
+      <div class="tech-item fade-up delay-2">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/nestjs/E0234E" alt="NestJS" loading="lazy" />
+        </div>
+        <div class="tech-item-name">NestJS</div>
+      </div>
+      <!-- Prisma -->
+      <div class="tech-item fade-up delay-3">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/prisma/2D3748" alt="Prisma" loading="lazy" />
+        </div>
+        <div class="tech-item-name">Prisma</div>
+      </div>
+      <!-- Python -->
+      <div class="tech-item fade-up delay-1">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python" loading="lazy" />
+        </div>
+        <div class="tech-item-name">Python</div>
+      </div>
+      <!-- Flutter -->
+      <div class="tech-item fade-up delay-2">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/flutter/02569B" alt="Flutter" loading="lazy" />
+        </div>
+        <div class="tech-item-name">Flutter</div>
+      </div>
+      <!-- .NET -->
+      <div class="tech-item fade-up delay-3">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/dotnet/512BD4" alt=".NET" loading="lazy" />
+        </div>
+        <div class="tech-item-name">.NET</div>
+      </div>
+      <!-- Arduino -->
+      <div class="tech-item fade-up delay-1">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/arduino/00979D" alt="Arduino" loading="lazy" />
+        </div>
+        <div class="tech-item-name">Arduino</div>
+      </div>
+      <!-- NodeMCU / ESP -->
+      <div class="tech-item fade-up delay-2">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/espressif/E7352C" alt="NodeMCU" loading="lazy" />
+        </div>
+        <div class="tech-item-name">NodeMCU</div>
+      </div>
+      <!-- Proxmox -->
+      <div class="tech-item fade-up delay-3">
+        <div class="tech-svg">
+          <img src="https://cdn.simpleicons.org/proxmox/E57000" alt="Proxmox" loading="lazy" />
+        </div>
+        <div class="tech-item-name">Proxmox</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PORTFOLIO SECTION
+============================================================ -->
+<section id="portfolio" class="section">
+  <div class="container">
+    <div class="portfolio-header fade-up">
+      <span class="tag">Portfolio</span>
+      <h2 class="section-title">
+        <span data-lang="id" class="lang-active">Karya Terbaik Kami</span>
+        <span data-lang="en">Our Featured Work</span>
+      </h2>
+      <div class="gold-line center"></div>
+      <p class="section-sub">
+        <span data-lang="id" class="lang-active">Setiap proyek mencerminkan komitmen kami terhadap kualitas, inovasi, dan kepuasan klien.</span>
+        <span data-lang="en">Every project reflects our commitment to quality, innovation, and client satisfaction.</span>
+      </p>
+    </div>
+
+    <div class="portfolio-grid">
+
+      <!-- ===============================================
+           Portfolio Item Start
+           Duplicate this block to add more portfolio
+      =============================================== -->
+      <div class="portfolio-card fade-up delay-1">
+        <div class="portfolio-img">
+          <!-- Replace src with actual image URL -->
+          <!-- <img src="your-image.jpg" alt="Project Name" loading="lazy" /> -->
+          <div class="portfolio-img-placeholder">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+            <span data-lang="id" class="lang-active">Gambar Proyek</span>
+            <span data-lang="en">Project Image</span>
+          </div>
+          <span class="portfolio-badge">Website</span>
+        </div>
+        <div class="portfolio-body">
+          <h3>
+            <span data-lang="id" class="lang-active">Sistem POS Retail</span>
+            <span data-lang="en">Retail POS System</span>
+          </h3>
+          <p data-lang="id" class="lang-active">Sistem point-of-sale lengkap dengan manajemen inventaris, laporan penjualan real-time, dan integrasi payment gateway.</p>
+          <p data-lang="en">Full-featured point-of-sale system with inventory management, real-time sales reports, and payment gateway integration.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Laravel</span>
+            <span class="portfolio-tag">React</span>
+            <span class="portfolio-tag">MySQL</span>
+          </div>
+        </div>
+      </div>
+      <!-- Portfolio Item End =============================================== -->
+
+      <!-- ===============================================
+           Portfolio Item Start
+           Duplicate this block to add more portfolio
+      =============================================== -->
+      <div class="portfolio-card fade-up delay-2">
+        <div class="portfolio-img">
+          <!-- Replace src with actual image URL -->
+          <!-- <img src="your-image.jpg" alt="Project Name" loading="lazy" /> -->
+          <div class="portfolio-img-placeholder">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+            <span data-lang="id" class="lang-active">Gambar Proyek</span>
+            <span data-lang="en">Project Image</span>
+          </div>
+          <span class="portfolio-badge">Mobile App</span>
+        </div>
+        <div class="portfolio-body">
+          <h3>
+            <span data-lang="id" class="lang-active">Aplikasi Absensi Smart</span>
+            <span data-lang="en">Smart Attendance App</span>
+          </h3>
+          <p data-lang="id" class="lang-active">Aplikasi absensi berbasis Flutter dengan sistem kartu RFID (NodeMCU), GPS tracking, dan dashboard admin real-time.</p>
+          <p data-lang="en">Flutter-based attendance app with RFID card system (NodeMCU), GPS tracking, and real-time admin dashboard.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Flutter</span>
+            <span class="portfolio-tag">NodeMCU</span>
+            <span class="portfolio-tag">Laravel</span>
+          </div>
+        </div>
+      </div>
+      <!-- Portfolio Item End =============================================== -->
+
+      <!-- ===============================================
+           Portfolio Item Start
+           Duplicate this block to add more portfolio
+      =============================================== -->
+      <div class="portfolio-card fade-up delay-3">
+        <div class="portfolio-img">
+          <!-- Replace src with actual image URL -->
+          <!-- <img src="your-image.jpg" alt="Project Name" loading="lazy" /> -->
+          <div class="portfolio-img-placeholder">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+            <span data-lang="id" class="lang-active">Gambar Proyek</span>
+            <span data-lang="en">Project Image</span>
+          </div>
+          <span class="portfolio-badge">System</span>
+        </div>
+        <div class="portfolio-body">
+          <h3>
+            <span data-lang="id" class="lang-active">Manajemen Aset Perusahaan</span>
+            <span data-lang="en">Enterprise Asset Management</span>
+          </h3>
+          <p data-lang="id" class="lang-active">Platform manajemen aset terintegrasi dengan fitur QR code tracking, maintenance schedule, dan laporan komprehensif.</p>
+          <p data-lang="en">Integrated asset management platform with QR code tracking, maintenance scheduling, and comprehensive reporting.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Next.js</span>
+            <span class="portfolio-tag">NestJS</span>
+            <span class="portfolio-tag">Prisma</span>
+          </div>
+        </div>
+      </div>
+      <!-- Portfolio Item End =============================================== -->
+
+    </div><!-- end .portfolio-grid -->
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT SECTION
+============================================================ -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info fade-up">
+        <span class="tag">
+          <span data-lang="id" class="lang-active">Kontak</span>
+          <span data-lang="en">Contact</span>
+        </span>
+        <h2 class="section-title">
+          <span data-lang="id" class="lang-active">Mari Mulai Proyek Bersama</span>
+          <span data-lang="en">Let's Start a Project Together</span>
+        </h2>
+        <div class="gold-line"></div>
+        <p class="section-sub">
+          <span data-lang="id" class="lang-active">Ceritakan kebutuhan teknologi Anda, dan tim kami siap memberikan solusi terbaik.</span>
+          <span data-lang="en">Tell us your technology needs, and our team is ready to deliver the best solution.</span>
+        </p>
+
+        <div style="margin-top: 40px;">
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <strong>Email</strong>
+              customerservice@ptgayamatir.my.id
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <strong>
+                <span data-lang="id" class="lang-active">Lokasi</span>
+                <span data-lang="en">Location</span>
+              </strong>
+              Indonesia
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up delay-2">
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">
+              <span data-lang="id" class="lang-active">Nama Lengkap</span>
+              <span data-lang="en">Full Name</span>
+            </label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="message">
+              <span data-lang="id" class="lang-active">Pesan</span>
+              <span data-lang="en">Message</span>
+            </label>
+            <textarea id="message" name="message" placeholder="..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary">
+            <svg viewBox="0 0 24 24" width="16" stroke="currentColor" fill="none" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9 22,2"/></svg>
+            <span data-lang="id" class="lang-active">Kirim Pesan</span>
+            <span data-lang="en">Send Message</span>
+          </button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <span data-lang="id" class="lang-active">✅ Pesan berhasil dikirim! Kami akan segera menghubungi Anda.</span>
+          <span data-lang="en">✅ Message sent! We'll get back to you shortly.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">PT<span>GA</span></div>
+
+      <nav class="footer-links">
+        <a href="#about">
+          <span data-lang="id" class="lang-active">Tentang</span>
+          <span data-lang="en">About</span>
+        </a>
+        <a href="#services">
+          <span data-lang="id" class="lang-active">Layanan</span>
+          <span data-lang="en">Services</span>
+        </a>
+        <a href="#techstack">Tech Stack</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">
+          <span data-lang="id" class="lang-active">Kontak</span>
+          <span data-lang="en">Contact</span>
+        </a>
+      </nav>
+
+      <div class="footer-social">
+        <!-- Instagram -->
+        <a href="#" class="social-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="#" class="social-btn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <!-- WhatsApp -->
+        <a href="https://wa.me/62" class="social-btn" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <p class="footer-copy">
+        &copy; <span id="year"></span> <span>PTGA</span> —
+        <span data-lang="id" class="lang-active">Seluruh hak cipta dilindungi. Dibuat dengan</span>
+        <span data-lang="en">All rights reserved. Made with</span>
+        <span style="color:var(--maroon)">♥</span>
+        <span data-lang="id" class="lang-active">di Indonesia.</span>
+        <span data-lang="en">in Indonesia.</span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+  // ---- Year ----
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---- Navbar scroll ----
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ---- Mobile menu ----
+  function toggleMenu() {
+    const btn  = document.getElementById('hamburgerBtn');
+    const menu = document.getElementById('mobileMenu');
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  }
+
+  // ---- Scroll-triggered fade-up ----
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ---- Language toggle ----
+  let currentLang = 'id';
+
+  function setLang(lang) {
+    currentLang = lang;
+    // Toggle lang elements
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      el.classList.toggle('lang-active', el.dataset.lang === lang);
+    });
+    // Toggle buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
+    });
+    // Update html lang attr
+    document.documentElement.lang = lang === 'id' ? 'id' : 'en';
+  }
+
+  // ---- Contact form ----
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form    = e.target;
+    const success = document.getElementById('formSuccess');
+    // Show success, hide form
+    form.style.display = 'none';
+    success.style.display = 'block';
+    // Activate lang in success
+    success.querySelectorAll('[data-lang]').forEach(el => {
+      el.classList.toggle('lang-active', el.dataset.lang === currentLang);
+    });
+    // Reset after 5s
+    setTimeout(() => {
+      form.reset();
+      form.style.display = 'flex';
+      success.style.display = 'none';
+    }, 5000);
+  }
+</script>
+</body>
+</html>
