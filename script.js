@@ -78,8 +78,28 @@
   }, {passive:true});
 
   /* ---- Contact form ---- */
-  window.handleSubmit = function(e){
+  window.handleSubmit = function(e) {
     e.preventDefault();
+
+    const emailTujuan = "customerservice@ptga.my.id";
+    const name = document.getElementById('fname').value;
+    const emailUser = document.getElementById('femail').value;
+    const subject = document.getElementById('fsubject').value;
+    const message = document.getElementById('fmsg').value;
+
+    // Menyusun isi body email
+    // %0D%0A adalah kode untuk baris baru (Enter)
+    const bodyEmail = `Nama: ${name}%0D%0A` +
+                      `Email Pengirim: ${emailUser}%0D%0A%0D%0A` +
+                      `Pesan:%0D%0A${message}`;
+
+    // Membuat Link mailto
+    const mailtoLink = `mailto:${emailTujuan}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyEmail)}`;
+
+    // Eksekusi: Membuka aplikasi email default user
+    window.location.href = mailtoLink;
+
+    // --- Logika UI Sukses (Opsional) ---
     var form = document.getElementById('cForm');
     var succ = document.getElementById('fSuccess');
     var btn  = document.getElementById('fBtn');
@@ -87,20 +107,19 @@
     btn.disabled = true;
     btn.style.opacity = '0.65';
 
-    setTimeout(function(){
+    setTimeout(function() {
       form.style.display = 'none';
-      succ.style.display = 'block';
+      if (succ) {
+        succ.style.display = 'block';
+        succ.querySelectorAll('p[data-lang]').forEach(function(p) {
+          p.style.display = p.dataset.lang === (window.lang || 'id') ? 'block' : 'none';
+        });
+      }
 
-      /* Sync success message language */
-      succ.querySelectorAll('p[data-lang]').forEach(function(p){
-        p.style.display = p.dataset.lang === lang ? 'block' : 'none';
-      });
-
-      /* Reset after 5 seconds */
-      setTimeout(function(){
+      setTimeout(function() {
         form.reset();
         form.style.display = 'flex';
-        succ.style.display = 'none';
+        if (succ) succ.style.display = 'none';
         btn.disabled = false;
         btn.style.opacity = '1';
       }, 5000);
