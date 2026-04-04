@@ -89,9 +89,9 @@
 
     // Menyusun isi body email
     // %0D%0A adalah kode untuk baris baru (Enter)
-    const bodyEmail = `Nama: ${name}%0D%0A` +
-                      `Email Pengirim: ${emailUser}%0D%0A%0D%0A` +
-                      `Pesan:%0D%0A${message}`;
+    const bodyEmail = `Nama: ${name}\n` +
+                      `Email Pengirim: ${emailUser}\n` +
+                      `Pesan:\n${message}`;
 
     // Membuat Link mailto
     const mailtoLink = `mailto:${emailTujuan}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyEmail)}`;
