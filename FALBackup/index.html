@@ -1,17 +1,35 @@
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="shortcut icon" href="img/logo/favico.png" type="image/x-icon">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="img/logo/favico.png" rel="shortcut icon" type="image/x-icon"/>
 <title>Dokumentasi Setup Bot Lark – SQL Backup to Lark Drive &amp; FTP | PTGA</title>
-<meta name="description" content="Panduan membuat bot Lark, mengatur permission, membagikan folder Lark Drive ke grup, dan menghubungkannya dengan aplikasi SQL Backup to Lark Drive & FTP." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" />
-<link rel="stylesheet" href="style.css">
+<meta content="Panduan membuat bot Lark, mengatur permission, membagikan folder Lark Drive ke grup, dan menghubungkannya dengan aplikasi SQL Backup to Lark Drive &amp; FTP." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<script>
+(function(){var l='id',q=null,st=null;
+try{q=new URLSearchParams(location.search).get('lang');}catch(e){}
+try{st=localStorage.getItem('ptga_doc_lang');}catch(e){}
+if(q==='en'||q==='id')l=q;else if(st==='en'||st==='id')l=st;
+document.documentElement.lang=l;})();
+</script>
 <style>
 /* Halaman dokumentasi: melengkapi style.css, memakai variabel warna yang sama */
+/* Bahasa: setiap teks punya dua span (id dan en), satu disembunyikan sesuai atribut lang di <html> */
+.id,.en{display:contents}
+html[lang="id"] .en,html[lang="en"] .id{display:none!important}
+.lb{font-family:var(--fb)}
+@media(max-width:900px){.mm .lt{display:flex;width:max-content}}
+
+/* Navbar saat di-scroll: class 'sc' di style.css dipakai kartu layanan, jadi dipisah di sini */
+#nb{z-index:10000}
+#nb.scrolled{background:rgba(8,8,8,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 0}
+
 .d-hero{position:relative;padding:150px 0 70px;overflow:hidden;background:var(--black)}
 .d-hero .container{position:relative;z-index:2}
 .d-hero h1{font-family:var(--fd);font-size:clamp(2.4rem,5.5vw,4.4rem);font-weight:700;line-height:1.1;color:var(--white);margin-bottom:22px;max-width:820px}
@@ -84,269 +102,262 @@ b.ui{font-weight:600;color:var(--white)}
 
 @media(max-width:600px){.dstep{padding:28px 22px}.d-hero{padding-top:120px}}
 </style>
-</head>
+</link></head>
 <body>
-
 <nav id="nb">
-  <div class="container">
-    <div class="ni">
-      <a href="index.html" class="nl">PT<span>GA</span></a>
-      <div class="nlinks">
-        <a href="index.html">Beranda</a>
-        <a href="https://github.com/dafaprasetya/FTP-LARK-Backup-SQL-Release/releases/tag/v1.1" target="_blank" rel="noopener">Unduh</a>
-        <a href="#bot">Buat Bot</a>
-        <a href="#permission">Permission</a>
-        <a href="#folder">Folder</a>
-        <a href="#aplikasi">Aplikasi</a>
-        <a href="#masalah">Masalah</a>
-      </div>
-      <button class="hbg" id="hbg" aria-label="Menu"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-  <div class="mm" id="mm">
-    <a href="index.html">Beranda</a>
-    <a href="https://github.com/dafaprasetya/FTP-LARK-Backup-SQL-Release/releases/tag/v1.1" target="_blank" rel="noopener">Unduh</a>
-    <a href="#bot">Buat Bot</a>
-    <a href="#permission">Permission</a>
-    <a href="#folder">Folder</a>
-    <a href="#aplikasi">Aplikasi</a>
-    <a href="#masalah">Masalah</a>
-  </div>
+<div class="container">
+<div class="ni">
+<a class="nl" href="index.html">PT<span>GA</span></a>
+<div class="nlinks">
+<a href="index.html"><span class="id">Beranda</span><span class="en">Home</span></a>
+<a href="https://github.com/dafaprasetya/FTP-LARK-Backup-SQL-Release/releases/tag/v1.1" rel="noopener" target="_blank"><span class="id">Unduh</span><span class="en">Download</span></a>
+<a href="#bot"><span class="id">Buat Bot</span><span class="en">Create Bot</span></a>
+<a href="#permission"><span class="id">Permission</span><span class="en">Permissions</span></a>
+<a href="#folder">Folder</a>
+<a href="#aplikasi"><span class="id">Aplikasi</span><span class="en">App</span></a>
+<a href="#masalah"><span class="id">Masalah</span><span class="en">Troubleshooting</span></a>
+        <div class="lt"><button type="button" class="lb act" data-l="id" aria-label="Bahasa Indonesia">ID</button><button type="button" class="lb" data-l="en" aria-label="English">EN</button></div>
+</div>
+<button aria-label="Menu" class="hbg" id="hbg"><span></span><span></span><span></span></button>
+</div>
+</div>
+<div class="mm" id="mm">
+<a href="index.html"><span class="id">Beranda</span><span class="en">Home</span></a>
+<a href="https://github.com/dafaprasetya/FTP-LARK-Backup-SQL-Release/releases/tag/v1.1" rel="noopener" target="_blank"><span class="id">Unduh</span><span class="en">Download</span></a>
+<a href="#bot"><span class="id">Buat Bot</span><span class="en">Create Bot</span></a>
+<a href="#permission"><span class="id">Permission</span><span class="en">Permissions</span></a>
+<a href="#folder">Folder</a>
+<a href="#aplikasi"><span class="id">Aplikasi</span><span class="en">App</span></a>
+<a href="#masalah"><span class="id">Masalah</span><span class="en">Troubleshooting</span></a>
+    <div class="lt"><button type="button" class="lb act" data-l="id" aria-label="Bahasa Indonesia">ID</button><button type="button" class="lb" data-l="en" aria-label="English">EN</button></div>
+</div>
 </nav>
-
 <header class="d-hero">
-  <div class="orb o1"></div>
-  <div class="orb o2"></div>
-  <div class="hgrid"></div>
-  <div class="container">
-    <div class="hey"><span class="heyline"></span><span class="heytext">Dokumentasi</span></div>
-    <h1>Setup <em>bot Lark</em> untuk SQL Backup to Lark Drive &amp; FTP</h1>
-    <p class="hs">Panduan membuat aplikasi bot di Lark, memberi permission upload dan kirim pesan, membagikan folder Lark Drive ke grup yang berisi bot, lalu menghubungkannya ke aplikasi backup.</p>
-    <div class="hcta">
-      <a href="https://github.com/dafaprasetya/FTP-LARK-Backup-SQL-Release/releases/tag/v1.1" class="btn-p" target="_blank" rel="noopener">Unduh aplikasi v1.1</a>
-      <a href="#bot" class="btn-o">Mulai dari langkah 1</a>
-      <a href="#masalah" class="btn-o">Pemecahan masalah</a>
-    </div>
-    <div class="d-meta">
-      <div><strong>8 langkah</strong>dari nol sampai backup pertama</div>
-      <div><strong>±20 menit</strong>perkiraan waktu pengerjaan</div>
-      <div><strong>Admin Lark</strong>diperlukan untuk menyetujui bot</div>
-    </div>
-  </div>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+<div class="hgrid"></div>
+<div class="container">
+<div class="hey"><span class="heyline"></span><span class="heytext"><span class="id">Dokumentasi</span><span class="en">Documentation</span></span></div>
+<h1><span class="id">Setup <em>bot Lark</em> untuk SQL Backup to Lark Drive &amp; FTP</span><span class="en">Setting up the <em>Lark bot</em> for SQL Backup to Lark Drive &amp; FTP</span></h1>
+<p class="hs"><span class="id">Panduan membuat aplikasi bot di Lark, memberi permission upload dan kirim pesan, membagikan folder Lark Drive ke grup yang berisi bot, lalu menghubungkannya ke aplikasi backup.</span><span class="en">A guide to creating a bot app in Lark, granting upload and messaging permissions, sharing a Lark Drive folder with the group that contains the bot, and connecting it to the backup application.</span></p>
+<div class="hcta">
+<a class="btn-p" href="https://github.com/dafaprasetya/FTP-LARK-Backup-SQL-Release/releases/tag/v1.1" rel="noopener" target="_blank"><span class="id">Unduh aplikasi v1.1</span><span class="en">Download app v1.1</span></a>
+<a class="btn-o" href="#bot"><span class="id">Mulai dari langkah 1</span><span class="en">Start at step 1</span></a>
+<a class="btn-o" href="#masalah"><span class="id">Pemecahan masalah</span><span class="en">Troubleshooting</span></a>
+</div>
+<div class="d-meta">
+<div><span class="id"><strong>8 langkah</strong>dari nol sampai backup pertama</span><span class="en"><strong>8 steps</strong>from scratch to your first backup</span></div>
+<div><span class="id"><strong>±20 menit</strong>perkiraan waktu pengerjaan</span><span class="en"><strong>±20 minutes</strong>estimated setup time</span></div>
+<div><span class="id"><strong>Admin Lark</strong>diperlukan untuk menyetujui bot</span><span class="en"><strong>Lark admin</strong>required to approve the bot</span></div>
+</div>
+</div>
 </header>
-
 <main class="d-wrap">
-  <div class="container">
-    <div class="d-grid">
-
-      <aside>
-        <div class="toc">
-          <h4>Daftar isi</h4>
-          <ol>
-            <li><a href="#ringkasan">Cara kerja</a></li>
-            <li><a href="#bot">Membuat bot</a></li>
-            <li><a href="#permission">Permission bot</a></li>
-            <li><a href="#publish">Publish aplikasi</a></li>
-            <li><a href="#grup">Menambahkan bot ke grup</a></li>
-            <li><a href="#folder">Membagikan folder ke grup</a></li>
-            <li><a href="#id">Mengambil ID dan domain</a></li>
-            <li><a href="#aplikasi">Mengisi aplikasi backup</a></li>
-            <li><a href="#masalah">Pemecahan masalah</a></li>
-            <li><a href="#keamanan">Keamanan</a></li>
-          </ol>
-        </div>
-      </aside>
-
-      <div>
-
-        <section class="dstep" id="ringkasan">
-          <span class="dnum">00</span>
-          <h2>Cara kerja</h2>
-          <p>Aplikasi backup tidak masuk sebagai akun pengguna. Ia memakai identitas sebuah bot (aplikasi Lark) untuk dua hal: mengunggah file hasil backup ke Lark Drive, dan mengirim laporan ke chat grup.</p>
-          <p>Bot tidak bisa diundang langsung ke sebuah folder seperti pengguna biasa. Cara yang berlaku di Lark adalah memasukkan bot ke sebuah grup, lalu membagikan folder ke grup tersebut. Dengan begitu bot ikut mendapat akses ke folder.</p>
-          <div class="note"><strong>Unduh aplikasi</strong><p>Rilis terbaru (v1.1) tersedia di <a class="lnk" href="https://github.com/dafaprasetya/FTP-LARK-Backup-SQL-Release/releases/tag/v1.1" target="_blank" rel="noopener">halaman Releases GitHub</a>. Unduh arsipnya, ekstrak, lalu jalankan <code>App.exe</code>. Panduan di bawah dikerjakan sebelum aplikasi dipakai untuk backup pertama.</p></div>
-          <div class="flow">
-            <div><span>1</span><p>Buat aplikasi dan aktifkan bot</p></div>
-            <div><span>2</span><p>Tambah permission lalu publish</p></div>
-            <div><span>3</span><p>Masukkan bot ke grup, bagikan folder ke grup</p></div>
-            <div><span>4</span><p>Isi App ID, secret, Chat ID, dan folder di aplikasi</p></div>
-          </div>
-        </section>
-
-        <section class="dstep" id="bot">
-          <span class="dnum">01</span>
-          <h2>Membuat bot</h2>
-          <p>Lakukan dengan akun yang punya akses ke Developer Console. Jika perusahaan Anda memakai Feishu, ganti alamat dengan <code>open.feishu.cn</code>.</p>
-          <ol class="sl">
-            <li>Buka <a class="lnk" href="https://open.larksuite.com/app" target="_blank" rel="noopener">open.larksuite.com/app</a> dan masuk dengan akun Lark perusahaan.</li>
-            <li>Klik <b class="ui">Create custom app</b>.</li>
-            <li>Isi nama aplikasi (misalnya <code>SQL Backup Bot</code>), deskripsi singkat, dan ikon bila perlu, lalu klik <b class="ui">Create</b>.</li>
-            <li>Di menu <b class="ui">Credentials &amp; Basic Info</b>, salin <b class="ui">App ID</b> dan <b class="ui">App Secret</b>. Simpan keduanya, nanti diisi di aplikasi backup.</li>
-            <li>Buka menu <b class="ui">Add features</b> (kadang tampil sebagai <b class="ui">App Capabilities</b>), cari <b class="ui">Bot</b>, lalu klik <b class="ui">Add</b>. Tanpa langkah ini bot tidak bisa dimasukkan ke grup dan tidak bisa mengirim pesan.</li>
-          </ol>
-          <div class="note w"><strong>Jaga App Secret</strong><p>Siapa pun yang memegang App ID dan App Secret bisa bertindak sebagai bot ini. Jangan dibagikan lewat chat umum atau disimpan di repositori.</p></div>
-        </section>
-
-        <section class="dstep" id="permission">
-          <span class="dnum">02</span>
-          <h2>Permission bot</h2>
-          <p>Buka menu <b class="ui">Permissions &amp; Scopes</b>, lalu klik <b class="ui">Add permission scopes to app</b>. Ketik nama permission di kolom pencarian, centang, lalu konfirmasi.</p>
-          <div class="tw">
-            <table>
-              <thead><tr><th>Permission</th><th>Dipakai untuk</th><th>Wajib</th></tr></thead>
-              <tbody>
-                <tr><td><code>drive:drive</code><br>View, comment, edit and manage all files in Drive</td><td>Mengunggah file backup ke folder Lark Drive (endpoint upload file).</td><td>Ya</td></tr>
-                <tr><td><code>im:message:send_as_bot</code><br>Send messages as an app</td><td>Mengirim laporan hasil backup ke grup.</td><td>Ya</td></tr>
-                <tr><td><code>im:chat:readonly</code><br>View group information</td><td>Hanya untuk mencari Chat ID lewat API Explorer (langkah 7). Boleh dicabut setelahnya.</td><td>Opsional</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="note"><strong>Nama bisa berbeda</strong><p>Tampilan nama permission di Developer Console dapat berubah antar versi. Jika kode di tabel tidak muncul persis, cari berdasarkan kata kunci (upload, drive, send message) dan pilih permission yang deskripsinya sama. Jika perusahaan ingin hak yang lebih sempit, permission khusus upload file (<code>drive:file:upload</code>) bisa dicoba menggantikan <code>drive:drive</code>.</p></div>
-        </section>
-
-        <section class="dstep" id="publish">
-          <span class="dnum">03</span>
-          <h2>Publish aplikasi</h2>
-          <p>Permission dan bot baru berlaku setelah aplikasi dirilis. Tahap ini harus diulang setiap kali Anda menambah atau mengubah permission.</p>
-          <ol class="sl">
-            <li>Buka menu <b class="ui">Version Management &amp; Release</b> lalu klik <b class="ui">Create a version</b>.</li>
-            <li>Isi nomor versi (misalnya <code>1.0.0</code>) dan catatan rilis. Pada <b class="ui">Availability</b>, pilih pengguna atau seluruh anggota yang boleh melihat bot. Anggota grup yang akan berisi bot sebaiknya termasuk.</li>
-            <li>Klik <b class="ui">Save</b>, lalu <b class="ui">Submit for release</b>.</li>
-            <li>Admin Lark menyetujui permintaan di Lark Admin Console. Jika Anda sendiri adalah admin, setujui langsung di sana. Status aplikasi berubah menjadi <b class="ui">Released</b> setelah disetujui.</li>
-          </ol>
-        </section>
-
-        <section class="dstep m" id="grup">
-          <span class="dnum">04</span>
-          <h2>Menambahkan bot ke grup</h2>
-          <p>Siapkan grup Lark yang akan menjadi perantara akses. Grup ini boleh sama dengan grup tempat laporan backup dikirim, boleh juga grup khusus.</p>
-          <ol class="sl">
-            <li>Buka grup di Lark, klik ikon <b class="ui">Settings</b> di pojok kanan atas.</li>
-            <li>Pilih <b class="ui">Bots</b>, lalu <b class="ui">Add Bot</b>.</li>
-            <li>Cari nama aplikasi yang Anda buat (misalnya <code>SQL Backup Bot</code>) dan klik <b class="ui">Add</b>.</li>
-          </ol>
-          <div class="note"><strong>Bot tidak muncul di pencarian?</strong><p>Artinya aplikasi belum berstatus Released, atau akun Anda tidak termasuk dalam availability yang dipilih di langkah 3.</p></div>
-        </section>
-
-        <section class="dstep m" id="folder">
-          <span class="dnum">05</span>
-          <h2>Membagikan folder ke grup</h2>
-          <p>Folder tujuan backup harus dibagikan ke grup yang berisi bot. Bot mewarisi akses grup tersebut.</p>
-          <ol class="sl">
-            <li>Buka <b class="ui">Drive</b> di Lark dan buat folder tujuan, misalnya satu folder per database atau satu folder untuk semua backup.</li>
-            <li>Klik kanan folder, pilih <b class="ui">Share</b>.</li>
-            <li>Cari nama grup yang sudah berisi bot, lalu tambahkan sebagai collaborator.</li>
-            <li>Atur izin menjadi <b class="ui">Can edit</b>. Izin <b class="ui">Can view</b> tidak cukup karena bot perlu menulis file ke folder.</li>
-            <li>Klik <b class="ui">Send</b> atau <b class="ui">Confirm</b>.</li>
-          </ol>
-          <p>Jika backup beberapa database dipisah ke folder berbeda, bagikan setiap folder tersebut ke grup yang sama. Subfolder di dalam folder yang sudah dibagikan ikut mewarisi izinnya.</p>
-          <div class="note"><strong>Alternatif</strong><p>Jika folder sudah dibagikan ke grup bawaan "All Members" dengan izin edit, langkah ini bisa dilewati. Pertimbangkan dulu apakah semua anggota perusahaan memang boleh mengubah file backup.</p></div>
-        </section>
-
-        <section class="dstep" id="id">
-          <span class="dnum">06</span>
-          <h2>Mengambil ID dan domain</h2>
-
-          <h3>Folder ID</h3>
-          <p>Buka folder tujuan di browser. Folder ID adalah bagian URL setelah <code>/folder/</code>.</p>
+<div class="container">
+<div class="d-grid">
+<aside>
+<div class="toc">
+<h4><span class="id">Daftar isi</span><span class="en">Contents</span></h4>
+<ol>
+<li><a href="#ringkasan"><span class="id">Cara kerja</span><span class="en">How it works</span></a></li>
+<li><a href="#bot"><span class="id">Membuat bot</span><span class="en">Creating the bot</span></a></li>
+<li><a href="#permission"><span class="id">Permission bot</span><span class="en">Bot permissions</span></a></li>
+<li><a href="#publish"><span class="id">Publish aplikasi</span><span class="en">Publishing the app</span></a></li>
+<li><a href="#grup"><span class="id">Menambahkan bot ke grup</span><span class="en">Adding the bot to a group</span></a></li>
+<li><a href="#folder"><span class="id">Membagikan folder ke grup</span><span class="en">Sharing the folder with the group</span></a></li>
+<li><a href="#id"><span class="id">Mengambil ID dan domain</span><span class="en">Getting the IDs and domain</span></a></li>
+<li><a href="#aplikasi"><span class="id">Mengisi aplikasi backup</span><span class="en">Configuring the backup app</span></a></li>
+<li><a href="#masalah"><span class="id">Pemecahan masalah</span><span class="en">Troubleshooting</span></a></li>
+<li><a href="#keamanan"><span class="id">Keamanan</span><span class="en">Security</span></a></li>
+<li><a href="#antivirus"><span class="id">Peringatan anti-virus</span><span class="en">Antivirus warnings</span></a></li>
+</ol>
+</div>
+</aside>
+<div>
+<section class="dstep" id="ringkasan">
+<span class="dnum">00</span>
+<h2><span class="id">Cara kerja</span><span class="en">How it works</span></h2>
+<p><span class="id">Aplikasi backup tidak masuk sebagai akun pengguna. Ia memakai identitas sebuah bot (aplikasi Lark) untuk dua hal: mengunggah file hasil backup ke Lark Drive, dan mengirim laporan ke chat grup.</span><span class="en">The backup application does not sign in as a user. It uses the identity of a bot (a Lark app) for two things: uploading backup files to Lark Drive, and sending reports to a group chat.</span></p>
+<p><span class="id">Bot tidak bisa diundang langsung ke sebuah folder seperti pengguna biasa. Cara yang berlaku di Lark adalah memasukkan bot ke sebuah grup, lalu membagikan folder ke grup tersebut. Dengan begitu bot ikut mendapat akses ke folder.</span><span class="en">A bot cannot be invited to a folder directly like a regular user. The approach that works in Lark is to add the bot to a group, then share the folder with that group. The bot then inherits access to the folder.</span></p>
+<div class="note"><strong><span class="id">Unduh aplikasi</span><span class="en">Download the app</span></strong><p><span class="id">Rilis terbaru (v1.1) tersedia di <a class="lnk" href="https://github.com/dafaprasetya/FTP-LARK-Backup-SQL-Release/releases/tag/v1.1" rel="noopener" target="_blank">halaman Releases GitHub</a>. Unduh arsipnya, ekstrak, lalu jalankan <code>App.exe</code>. Panduan di bawah dikerjakan sebelum aplikasi dipakai untuk backup pertama.</span><span class="en">The latest release (v1.1) is available on the <a class="lnk" href="https://github.com/dafaprasetya/FTP-LARK-Backup-SQL-Release/releases/tag/v1.1" rel="noopener" target="_blank">GitHub Releases page</a>. Download the archive, extract it, then run <code>App.exe</code>. Complete the guide below before using the app for your first backup.</span></p></div>
+<div class="flow">
+<div><span>1</span><p><span class="id">Buat aplikasi dan aktifkan bot</span><span class="en">Create the app and enable the bot</span></p></div>
+<div><span>2</span><p><span class="id">Tambah permission lalu publish</span><span class="en">Add permissions, then publish</span></p></div>
+<div><span>3</span><p><span class="id">Masukkan bot ke grup, bagikan folder ke grup</span><span class="en">Add the bot to a group, share the folder with the group</span></p></div>
+<div><span>4</span><p><span class="id">Isi App ID, secret, Chat ID, dan folder di aplikasi</span><span class="en">Enter the App ID, secret, Chat ID, and folder in the app</span></p></div>
+</div>
+</section>
+<section class="dstep" id="bot">
+<span class="dnum">01</span>
+<h2><span class="id">Membuat bot</span><span class="en">Creating the bot</span></h2>
+<p><span class="id">Lakukan dengan akun yang punya akses ke Developer Console. Jika perusahaan Anda memakai Feishu, ganti alamat dengan <code>open.feishu.cn</code>.</span><span class="en">Use an account that has access to the Developer Console. If your company uses Feishu, replace the address with <code>open.feishu.cn</code>.</span></p>
+<ol class="sl">
+<li><span class="id">Buka <a class="lnk" href="https://open.larksuite.com/app" rel="noopener" target="_blank">open.larksuite.com/app</a> dan masuk dengan akun Lark perusahaan.</span><span class="en">Open <a class="lnk" href="https://open.larksuite.com/app" rel="noopener" target="_blank">open.larksuite.com/app</a> and sign in with your company Lark account.</span></li>
+<li><span class="id">Klik <b class="ui">Create custom app</b>.</span><span class="en">Click <b class="ui">Create custom app</b>.</span></li>
+<li><span class="id">Isi nama aplikasi (misalnya <code>SQL Backup Bot</code>), deskripsi singkat, dan ikon bila perlu, lalu klik <b class="ui">Create</b>.</span><span class="en">Enter the app name (for example <code>SQL Backup Bot</code>), a short description, and an icon if needed, then click <b class="ui">Create</b>.</span></li>
+<li><span class="id">Di menu <b class="ui">Credentials &amp; Basic Info</b>, salin <b class="ui">App ID</b> dan <b class="ui">App Secret</b>. Simpan keduanya, nanti diisi di aplikasi backup.</span><span class="en">Under <b class="ui">Credentials &amp; Basic Info</b>, copy the <b class="ui">App ID</b> and <b class="ui">App Secret</b>. Keep both, you will enter them in the backup app later.</span></li>
+<li><span class="id">Buka menu <b class="ui">Add features</b> (kadang tampil sebagai <b class="ui">App Capabilities</b>), cari <b class="ui">Bot</b>, lalu klik <b class="ui">Add</b>. Tanpa langkah ini bot tidak bisa dimasukkan ke grup dan tidak bisa mengirim pesan.</span><span class="en">Open <b class="ui">Add features</b> (sometimes shown as <b class="ui">App Capabilities</b>), find <b class="ui">Bot</b>, then click <b class="ui">Add</b>. Without this step the bot cannot be added to a group and cannot send messages.</span></li>
+</ol>
+<div class="note w"><strong><span class="id">Jaga App Secret</span><span class="en">Protect the App Secret</span></strong><p><span class="id">Siapa pun yang memegang App ID dan App Secret bisa bertindak sebagai bot ini. Jangan dibagikan lewat chat umum atau disimpan di repositori.</span><span class="en">Anyone who holds the App ID and App Secret can act as this bot. Do not share them in public chats or store them in a repository.</span></p></div>
+</section>
+<section class="dstep" id="permission">
+<span class="dnum">02</span>
+<h2><span class="id">Permission bot</span><span class="en">Bot permissions</span></h2>
+<p><span class="id">Buka menu <b class="ui">Permissions &amp; Scopes</b>, lalu klik <b class="ui">Add permission scopes to app</b>. Ketik nama permission di kolom pencarian, centang, lalu konfirmasi.</span><span class="en">Open <b class="ui">Permissions &amp; Scopes</b>, then click <b class="ui">Add permission scopes to app</b>. Type the permission name in the search box, tick it, then confirm.</span></p>
+<div class="tw">
+<table>
+<thead><tr><th>Permission</th><th><span class="id">Dipakai untuk</span><span class="en">Used for</span></th><th><span class="id">Wajib</span><span class="en">Required</span></th></tr></thead>
+<tbody>
+<tr><td><code>drive:drive</code><br/>View, comment, edit and manage all files in Drive</td><td><span class="id">Mengunggah file backup ke folder Lark Drive (endpoint upload file).</span><span class="en">Uploading backup files to a Lark Drive folder (file upload endpoint).</span></td><td><span class="id">Ya</span><span class="en">Yes</span></td></tr>
+<tr><td><code>im:message:send_as_bot</code><br/>Send messages as an app</td><td><span class="id">Mengirim laporan hasil backup ke grup.</span><span class="en">Sending backup result reports to the group.</span></td><td><span class="id">Ya</span><span class="en">Yes</span></td></tr>
+<tr><td><code>im:chat:readonly</code><br/>View group information</td><td><span class="id">Hanya untuk mencari Chat ID lewat API Explorer (langkah 6). Boleh dicabut setelahnya.</span><span class="en">Only for looking up the Chat ID through API Explorer (step 6). Can be removed afterwards.</span></td><td><span class="id">Opsional</span><span class="en">Optional</span></td></tr>
+</tbody>
+</table>
+</div>
+<div class="note"><strong><span class="id">Nama bisa berbeda</span><span class="en">Names may differ</span></strong><p><span class="id">Tampilan nama permission di Developer Console dapat berubah antar versi. Jika kode di tabel tidak muncul persis, cari berdasarkan kata kunci (upload, drive, send message) dan pilih permission yang deskripsinya sama. Jika perusahaan ingin hak yang lebih sempit, permission khusus upload file (<code>drive:file:upload</code>) bisa dicoba menggantikan <code>drive:drive</code>.</span><span class="en">Permission names in the Developer Console can change between versions. If a code in the table does not appear exactly, search by keyword (upload, drive, send message) and pick the permission with the same description. If your company wants narrower access, the file-upload-only permission (<code>drive:file:upload</code>) can be tried in place of <code>drive:drive</code>.</span></p></div>
+</section>
+<section class="dstep" id="publish">
+<span class="dnum">03</span>
+<h2><span class="id">Publish aplikasi</span><span class="en">Publishing the app</span></h2>
+<p><span class="id">Permission dan bot baru berlaku setelah aplikasi dirilis. Tahap ini harus diulang setiap kali Anda menambah atau mengubah permission.</span><span class="en">Permissions and the bot only take effect after the app is released. Repeat this step every time you add or change permissions.</span></p>
+<ol class="sl">
+<li><span class="id">Buka menu <b class="ui">Version Management &amp; Release</b> lalu klik <b class="ui">Create a version</b>.</span><span class="en">Open <b class="ui">Version Management &amp; Release</b>, then click <b class="ui">Create a version</b>.</span></li>
+<li><span class="id">Isi nomor versi (misalnya <code>1.0.0</code>) dan catatan rilis. Pada <b class="ui">Availability</b>, pilih pengguna atau seluruh anggota yang boleh melihat bot. Anggota grup yang akan berisi bot sebaiknya termasuk.</span><span class="en">Enter a version number (for example <code>1.0.0</code>) and release notes. Under <b class="ui">Availability</b>, choose the users or all members who may see the bot. Members of the group that will contain the bot should be included.</span></li>
+<li><span class="id">Klik <b class="ui">Save</b>, lalu <b class="ui">Submit for release</b>.</span><span class="en">Click <b class="ui">Save</b>, then <b class="ui">Submit for release</b>.</span></li>
+<li><span class="id">Admin Lark menyetujui permintaan di Lark Admin Console. Jika Anda sendiri adalah admin, setujui langsung di sana. Status aplikasi berubah menjadi <b class="ui">Released</b> setelah disetujui.</span><span class="en">A Lark admin approves the request in the Lark Admin Console. If you are the admin, approve it there yourself. The app status changes to <b class="ui">Released</b> once approved.</span></li>
+</ol>
+</section>
+<section class="dstep m" id="grup">
+<span class="dnum">04</span>
+<h2><span class="id">Menambahkan bot ke grup</span><span class="en">Adding the bot to a group</span></h2>
+<p><span class="id">Siapkan grup Lark yang akan menjadi perantara akses. Grup ini boleh sama dengan grup tempat laporan backup dikirim, boleh juga grup khusus.</span><span class="en">Prepare the Lark group that will act as the access intermediary. It can be the same group that receives backup reports, or a dedicated group.</span></p>
+<ol class="sl">
+<li><span class="id">Buka grup di Lark, klik ikon <b class="ui">Settings</b> di pojok kanan atas.</span><span class="en">Open the group in Lark and click the <b class="ui">Settings</b> icon at the top right.</span></li>
+<li><span class="id">Pilih <b class="ui">Bots</b>, lalu <b class="ui">Add Bot</b>.</span><span class="en">Choose <b class="ui">Bots</b>, then <b class="ui">Add Bot</b>.</span></li>
+<li><span class="id">Cari nama aplikasi yang Anda buat (misalnya <code>SQL Backup Bot</code>) dan klik <b class="ui">Add</b>.</span><span class="en">Search for the app name you created (for example <code>SQL Backup Bot</code>) and click <b class="ui">Add</b>.</span></li>
+</ol>
+<div class="note"><strong><span class="id">Bot tidak muncul di pencarian?</span><span class="en">Bot does not appear in search?</span></strong><p><span class="id">Artinya aplikasi belum berstatus Released, atau akun Anda tidak termasuk dalam availability yang dipilih di langkah 3.</span><span class="en">This means the app is not yet Released, or your account is not included in the availability chosen in step 3.</span></p></div>
+</section>
+<section class="dstep m" id="folder">
+<span class="dnum">05</span>
+<h2><span class="id">Membagikan folder ke grup</span><span class="en">Sharing the folder with the group</span></h2>
+<p><span class="id">Folder tujuan backup harus dibagikan ke grup yang berisi bot. Bot mewarisi akses grup tersebut.</span><span class="en">The backup destination folder must be shared with the group that contains the bot. The bot inherits that group's access.</span></p>
+<ol class="sl">
+<li><span class="id">Buka <b class="ui">Drive</b> di Lark dan buat folder tujuan, misalnya satu folder per database atau satu folder untuk semua backup.</span><span class="en">Open <b class="ui">Drive</b> in Lark and create the destination folder, for example one folder per database or one folder for all backups.</span></li>
+<li><span class="id">Klik kanan folder, pilih <b class="ui">Share</b>.</span><span class="en">Right-click the folder and choose <b class="ui">Share</b>.</span></li>
+<li><span class="id">Cari nama grup yang sudah berisi bot, lalu tambahkan sebagai collaborator.</span><span class="en">Search for the group that already contains the bot, then add it as a collaborator.</span></li>
+<li><span class="id">Atur izin menjadi <b class="ui">Can edit</b>. Izin <b class="ui">Can view</b> tidak cukup karena bot perlu menulis file ke folder.</span><span class="en">Set the permission to <b class="ui">Can edit</b>. <b class="ui">Can view</b> is not enough because the bot needs to write files into the folder.</span></li>
+<li><span class="id">Klik <b class="ui">Send</b> atau <b class="ui">Confirm</b>.</span><span class="en">Click <b class="ui">Send</b> or <b class="ui">Confirm</b>.</span></li>
+</ol>
+<p><span class="id">Jika backup beberapa database dipisah ke folder berbeda, bagikan setiap folder tersebut ke grup yang sama. Subfolder di dalam folder yang sudah dibagikan ikut mewarisi izinnya.</span><span class="en">If backups for several databases go to different folders, share each of those folders with the same group. Subfolders inside a shared folder inherit its permissions.</span></p>
+<div class="note"><strong><span class="id">Alternatif</span><span class="en">Alternative</span></strong><p><span class="id">Jika folder sudah dibagikan ke grup bawaan "All Members" dengan izin edit, langkah ini bisa dilewati. Pertimbangkan dulu apakah semua anggota perusahaan memang boleh mengubah file backup.</span><span class="en">If the folder is already shared with the built-in "All Members" group with edit permission, this step can be skipped. First consider whether every member of the company should really be able to modify backup files.</span></p></div>
+</section>
+<section class="dstep" id="id">
+<span class="dnum">06</span>
+<h2><span class="id">Mengambil ID dan domain</span><span class="en">Getting the IDs and domain</span></h2>
+<h3>Folder ID</h3>
+<p><span class="id">Buka folder tujuan di browser. Folder ID adalah bagian URL setelah <code>/folder/</code>.</span><span class="en">Open the destination folder in your browser. The Folder ID is the part of the URL after <code>/folder/</code>.</span></p>
 <pre><code>https://namaperusahaan.jp.larksuite.com/drive/folder/<span class="h">fldjzXXXXXXXXXXXXXXXXXXXXXX</span></code></pre>
+<h3>Drive domain</h3>
+<p><span class="id">Bagian host dari URL yang sama, tanpa <code>https://</code> dan tanpa garis miring di akhir. Pada contoh di atas: <code>namaperusahaan.jp.larksuite.com</code>. Domain ini dipakai untuk membentuk tautan file yang dikirim di notifikasi.</span><span class="en">The host part of the same URL, without <code>https://</code> and without a trailing slash. In the example above: <code>namaperusahaan.jp.larksuite.com</code>. This domain is used to build the file links sent in notifications.</span></p>
+<h3><span class="id">Chat ID grup</span><span class="en">Group Chat ID</span></h3>
+<p><span class="id">Chat ID berawalan <code>oc_</code> dan tidak ditampilkan di tampilan grup. Cara mengambilnya:</span><span class="en">The Chat ID starts with <code>oc_</code> and is not displayed in the group view. To get it:</span></p>
+<ol class="sl">
+<li><span class="id">Pastikan permission <code>im:chat:readonly</code> sudah ditambahkan dan versi aplikasi sudah dirilis ulang.</span><span class="en">Make sure the <code>im:chat:readonly</code> permission has been added and the app version has been released again.</span></li>
+<li><span class="id">Buka <a class="lnk" href="https://open.larksuite.com/api-explorer" rel="noopener" target="_blank">API Explorer</a>, pilih aplikasi Anda, dan cari <b class="ui">Get chat list</b>.</span><span class="en">Open <a class="lnk" href="https://open.larksuite.com/api-explorer" rel="noopener" target="_blank">API Explorer</a>, select your app, and search for <b class="ui">Get chat list</b>.</span></li>
+<li><span class="id">Pilih tipe token <b class="ui">tenant_access_token</b>, lalu klik <b class="ui">Try it out</b>.</span><span class="en">Choose the token type <b class="ui">tenant_access_token</b>, then click <b class="ui">Try it out</b>.</span></li>
+<li><span class="id">Pada hasil, cari grup berdasarkan nama dan salin nilai <code>chat_id</code>. Daftar ini hanya memuat grup yang sudah berisi bot.</span><span class="en">In the result, find the group by name and copy the <code>chat_id</code> value. This list only includes groups that already contain the bot.</span></li>
+</ol>
+</section>
+<section class="dstep" id="aplikasi">
+<span class="dnum">07</span>
+<h2><span class="id">Mengisi aplikasi backup</span><span class="en">Configuring the backup app</span></h2>
+<h3><span class="id">Menu Setting, bagian Lark Profile</span><span class="en">Setting menu, Lark Profile section</span></h3>
+<div class="tw">
+<table>
+<thead><tr><th><span class="id">Kolom</span><span class="en">Field</span></th><th><span class="id">Isi</span><span class="en">Value</span></th></tr></thead>
+<tbody>
+<tr><td>API base URL</td><td><span class="id"><code>https://open.larksuite.com/open-apis</code> untuk Lark. Untuk Feishu gunakan <code>https://open.feishu.cn/open-apis</code>.</span><span class="en"><code>https://open.larksuite.com/open-apis</code> for Lark. For Feishu use <code>https://open.feishu.cn/open-apis</code>.</span></td></tr>
+<tr><td>App ID</td><td><span class="id">Dari <b class="ui">Credentials &amp; Basic Info</b> (berawalan <code>cli_</code>).</span><span class="en">From <b class="ui">Credentials &amp; Basic Info</b> (starts with <code>cli_</code>).</span></td></tr>
+<tr><td>App secret</td><td><span class="id">Dari halaman yang sama.</span><span class="en">From the same page.</span></td></tr>
+<tr><td>Chat ID</td><td><span class="id">Nilai <code>oc_...</code> dari langkah 6.</span><span class="en">The <code>oc_...</code> value from step 6.</span></td></tr>
+<tr><td>Drive domain</td><td><span class="id">Host URL Lark Anda, tanpa <code>https://</code>.</span><span class="en">Your Lark URL host, without <code>https://</code>.</span></td></tr>
+</tbody>
+</table>
+</div>
+<h3><span class="id">Menu + Tambah Database</span><span class="en">+ Add Database menu</span></h3>
+<p><span class="id">Isi <b class="ui">Folder Lark ID</b> dengan folder ID dari langkah 6. Setiap database boleh memakai folder yang berbeda.</span><span class="en">Fill <b class="ui">Folder Lark ID</b> with the folder ID from step 6. Each database may use a different folder.</span></p>
+<h3><span class="id">Uji koneksi dan backup pertama</span><span class="en">Test the connection and run the first backup</span></h3>
+<ol class="sl">
+<li><span class="id">Di halaman utama, klik <b class="ui">Cek ulang koneksi</b>. Status Lark harus berubah menjadi terhubung.</span><span class="en">On the main screen, click <b class="ui">Cek ulang koneksi</b> (re-check connection). The Lark status should change to connected.</span></li>
+<li><span class="id">Klik <b class="ui">Run Backup</b>, pilih satu database kecil dan tujuan <b class="ui">Lark Drive</b>.</span><span class="en">Click <b class="ui">Run Backup</b>, choose one small database and the <b class="ui">Lark Drive</b> destination.</span></li>
+<li><span class="id">Setelah selesai, periksa dua hal: file muncul di folder Lark, dan laporan masuk ke grup.</span><span class="en">When it finishes, check two things: the file appears in the Lark folder, and the report arrives in the group.</span></li>
+</ol>
+</section>
+<section class="dstep" id="masalah">
+<span class="dnum">08</span>
+<h2><span class="id">Pemecahan masalah</span><span class="en">Troubleshooting</span></h2>
+<div class="tw">
+<table>
+<thead><tr><th><span class="id">Gejala</span><span class="en">Symptom</span></th><th><span class="id">Penyebab yang umum dan solusi</span><span class="en">Common cause and solution</span></th></tr></thead>
+<tbody>
+<tr><td><span class="id">Gagal mengambil token / koneksi Lark gagal</span><span class="en">Failed to get token / Lark connection failed</span></td><td><span class="id">App ID atau App secret salah, ada spasi tersisa saat menyalin, atau API base URL tidak sesuai (Lark dan Feishu berbeda).</span><span class="en">Wrong App ID or App secret, a leftover space from copying, or the API base URL does not match (Lark and Feishu differ).</span></td></tr>
+<tr><td><span class="id">Upload ditolak (permission / access denied)</span><span class="en">Upload rejected (permission / access denied)</span></td><td><span class="id">Folder belum dibagikan ke grup yang berisi bot, izin hanya <b class="ui">Can view</b>, atau permission <code>drive:drive</code> belum dirilis. Cek langkah 3 sampai 5.</span><span class="en">The folder has not been shared with the group that contains the bot, the permission is only <b class="ui">Can view</b>, or the <code>drive:drive</code> permission has not been released. Check steps 3 to 5.</span></td></tr>
+<tr><td><span class="id">Upload gagal karena folder tidak ditemukan</span><span class="en">Upload fails because the folder is not found</span></td><td><span class="id">Folder ID salah salin, atau folder berada di ruang yang tidak terjangkau grup tersebut.</span><span class="en">The Folder ID was copied incorrectly, or the folder is in a space that the group cannot reach.</span></td></tr>
+<tr><td><span class="id">Pesan laporan tidak masuk ke grup</span><span class="en">Report message does not arrive in the group</span></td><td><span class="id">Bot belum ditambahkan ke grup, Chat ID salah, atau permission <code>im:message:send_as_bot</code> belum dirilis.</span><span class="en">The bot has not been added to the group, the Chat ID is wrong, or the <code>im:message:send_as_bot</code> permission has not been released.</span></td></tr>
+<tr><td><span class="id">File terunggah tetapi tautan tidak bisa dibuka</span><span class="en">File uploaded but the link does not open</span></td><td><span class="id">Drive domain salah. Samakan dengan host URL yang Anda pakai saat membuka Lark Drive di browser.</span><span class="en">The Drive domain is wrong. Match it to the URL host you use when opening Lark Drive in the browser.</span></td></tr>
+<tr><td><span class="id">Sudah menambah permission tapi tetap ditolak</span><span class="en">Permission was added but access is still denied</span></td><td><span class="id">Perubahan permission baru aktif setelah membuat versi baru dan disetujui admin. Ulangi langkah 3.</span><span class="en">New permissions only take effect after a new version is created and approved by an admin. Repeat step 3.</span></td></tr>
+<tr><td><span class="id">Bot tidak bisa ditemukan saat Add Bot</span><span class="en">Bot cannot be found when using Add Bot</span></td><td><span class="id">Aplikasi belum berstatus Released atau kemampuan Bot belum ditambahkan (langkah 1 butir 5).</span><span class="en">The app is not yet Released, or the Bot capability has not been added (step 1, item 5).</span></td></tr>
+</tbody>
+</table>
+</div>
+<p><span class="id">Untuk detail kegagalan, buka folder <code>logs</code> di sebelah <code>App.exe</code>, atau klik item status di aplikasi untuk melihat log proses tersebut.</span><span class="en">For failure details, open the <code>logs</code> folder next to <code>App.exe</code>, or click a status item in the app to view that run's log.</span></p>
+</section>
+<section class="dstep" id="keamanan">
+<span class="dnum">09</span>
+<h2><span class="id">Keamanan</span><span class="en">Security</span></h2>
+<ul class="bl">
+<li><span class="id">Berikan permission seperlunya saja. Cabut <code>im:chat:readonly</code> setelah Chat ID didapat.</span><span class="en">Grant only the permissions you need. Remove <code>im:chat:readonly</code> once you have the Chat ID.</span></li>
+<li><span class="id">Gunakan grup khusus untuk akses folder backup dan batasi siapa yang menjadi anggotanya, karena semua anggota grup ikut mendapat izin edit pada folder tersebut.</span><span class="en">Use a dedicated group for backup folder access and limit its membership, because every group member also gets edit permission on the folder.</span></li>
+<li><span class="id">Jika App Secret bocor, buat ulang lewat <b class="ui">Credentials &amp; Basic Info</b>, lalu perbarui di menu Setting aplikasi backup.</span><span class="en">If the App Secret leaks, regenerate it under <b class="ui">Credentials &amp; Basic Info</b>, then update it in the backup app's Setting menu.</span></li>
+<li><span class="id">Batasi akses ke folder aplikasi backup di komputer, karena App Secret tersimpan di berkas konfigurasi lokal.</span><span class="en">Restrict access to the backup app folder on the computer, because the App Secret is stored in a local configuration file.</span></li>
+</ul>
+<p><span class="id">Butuh bantuan atau ingin membeli license key aplikasi? Hubungi <a class="lnk" href="mailto:customerservice@ptga.my.id">customerservice@ptga.my.id</a>.</span><span class="en">Need help or want to buy an app license key? Contact <a class="lnk" href="mailto:customerservice@ptga.my.id">customerservice@ptga.my.id</a>.</span></p>
+</section>
 
-          <h3>Drive domain</h3>
-          <p>Bagian host dari URL yang sama, tanpa <code>https://</code> dan tanpa garis miring di akhir. Pada contoh di atas: <code>namaperusahaan.jp.larksuite.com</code>. Domain ini dipakai untuk membentuk tautan file yang dikirim di notifikasi.</p>
+<section class="dstep m" id="antivirus">
+<span class="dnum">10</span>
+<h2><span class="id">Disclaimer dan peringatan anti-virus</span><span class="en">Disclaimer and antivirus warnings</span></h2>
+<p><span class="id">Aplikasi ini bukan virus atau malware.</span><span class="en">This application is not a virus or malware.</span></p>
+<p><span class="id">Sebagian program anti-virus atau Windows Defender dapat memberikan peringatan false positive (deteksi palsu) atau memblokir file <code>FTP-And-Lark-Backup-SQL.exe</code>. Hal ini dapat terjadi karena aplikasi belum ditandatangani dengan digital certificate (code signing) komersial, serta adanya fitur keamanan internal yang memproteksi lisensi perangkat.</span><span class="en">Some antivirus programs or Windows Defender may raise a false positive warning or block the file <code>FTP-And-Lark-Backup-SQL.exe</code>. This can happen because the application has not been signed with a commercial digital certificate (code signing), and because of an internal security feature that protects the device license.</span></p>
+<p><span class="id">Jika aplikasi terdeteksi sebagai ancaman, atau file executable terhapus atau diblokir secara otomatis, ikuti langkah berikut:</span><span class="en">If the application is flagged as a threat, or the executable is deleted or blocked automatically, follow these steps:</span></p>
+<ol class="sl">
+<li><span class="id"><b class="ui">Pulihkan file dari karantina.</b> Buka menu anti-virus atau Windows Defender, cari menu <b class="ui">Quarantine</b> (Karantina), pilih file aplikasi ini, lalu lakukan <b class="ui">Restore</b> (Pulihkan).</span><span class="en"><b class="ui">Restore the file from quarantine.</b> Open your antivirus or Windows Defender, find the <b class="ui">Quarantine</b> menu, select this application's file, then choose <b class="ui">Restore</b>.</span></li>
+<li><span class="id"><b class="ui">Tambahkan pengecualian (exclusion).</b> Tambahkan folder aplikasi <code>FTP &amp; LARK Backup SQL</code> ke daftar <b class="ui">Exclusion</b> atau <b class="ui">Allowed Threats</b> di anti-virus Anda, supaya backup otomatis dan akses file lisensi tidak terganggu di kemudian hari.</span><span class="en"><b class="ui">Add an exclusion.</b> Add the application folder <code>FTP &amp; LARK Backup SQL</code> to the <b class="ui">Exclusion</b> or <b class="ui">Allowed Threats</b> list in your antivirus, so automatic backups and license file access are not interrupted later.</span></li>
+</ol>
+</section>
 
-          <h3>Chat ID grup</h3>
-          <p>Chat ID berawalan <code>oc_</code> dan tidak ditampilkan di tampilan grup. Cara mengambilnya:</p>
-          <ol class="sl">
-            <li>Pastikan permission <code>im:chat:readonly</code> sudah ditambahkan dan versi aplikasi sudah dirilis ulang.</li>
-            <li>Buka <a class="lnk" href="https://open.larksuite.com/api-explorer" target="_blank" rel="noopener">API Explorer</a>, pilih aplikasi Anda, dan cari <b class="ui">Get chat list</b>.</li>
-            <li>Pilih tipe token <b class="ui">tenant_access_token</b>, lalu klik <b class="ui">Try it out</b>.</li>
-            <li>Pada hasil, cari grup berdasarkan nama dan salin nilai <code>chat_id</code>. Daftar ini hanya memuat grup yang sudah berisi bot.</li>
-          </ol>
-        </section>
-
-        <section class="dstep" id="aplikasi">
-          <span class="dnum">07</span>
-          <h2>Mengisi aplikasi backup</h2>
-          <h3>Menu Setting, bagian Lark Profile</h3>
-          <div class="tw">
-            <table>
-              <thead><tr><th>Kolom</th><th>Isi</th></tr></thead>
-              <tbody>
-                <tr><td>API base URL</td><td><code>https://open.larksuite.com/open-apis</code> untuk Lark. Untuk Feishu gunakan <code>https://open.feishu.cn/open-apis</code>.</td></tr>
-                <tr><td>App ID</td><td>Dari <b class="ui">Credentials &amp; Basic Info</b> (berawalan <code>cli_</code>).</td></tr>
-                <tr><td>App secret</td><td>Dari halaman yang sama.</td></tr>
-                <tr><td>Chat ID</td><td>Nilai <code>oc_...</code> dari langkah 6.</td></tr>
-                <tr><td>Drive domain</td><td>Host URL Lark Anda, tanpa <code>https://</code>.</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h3>Menu + Tambah Database</h3>
-          <p>Isi <b class="ui">Folder Lark ID</b> dengan folder ID dari langkah 6. Setiap database boleh memakai folder yang berbeda.</p>
-
-          <h3>Uji koneksi dan backup pertama</h3>
-          <ol class="sl">
-            <li>Di halaman utama, klik <b class="ui">Cek ulang koneksi</b>. Status Lark harus berubah menjadi terhubung.</li>
-            <li>Klik <b class="ui">Run Backup</b>, pilih satu database kecil dan tujuan <b class="ui">Lark Drive</b>.</li>
-            <li>Setelah selesai, periksa dua hal: file muncul di folder Lark, dan laporan masuk ke grup.</li>
-          </ol>
-        </section>
-
-        <section class="dstep" id="masalah">
-          <span class="dnum">08</span>
-          <h2>Pemecahan masalah</h2>
-          <div class="tw">
-            <table>
-              <thead><tr><th>Gejala</th><th>Penyebab yang umum dan solusi</th></tr></thead>
-              <tbody>
-                <tr><td>Gagal mengambil token / koneksi Lark gagal</td><td>App ID atau App secret salah, ada spasi tersisa saat menyalin, atau API base URL tidak sesuai (Lark dan Feishu berbeda).</td></tr>
-                <tr><td>Upload ditolak (permission / access denied)</td><td>Folder belum dibagikan ke grup yang berisi bot, izin hanya <b class="ui">Can view</b>, atau permission <code>drive:drive</code> belum dirilis. Cek langkah 3 sampai 5.</td></tr>
-                <tr><td>Upload gagal karena folder tidak ditemukan</td><td>Folder ID salah salin, atau folder berada di ruang yang tidak terjangkau grup tersebut.</td></tr>
-                <tr><td>Pesan laporan tidak masuk ke grup</td><td>Bot belum ditambahkan ke grup, Chat ID salah, atau permission <code>im:message:send_as_bot</code> belum dirilis.</td></tr>
-                <tr><td>File terunggah tetapi tautan tidak bisa dibuka</td><td>Drive domain salah. Samakan dengan host URL yang Anda pakai saat membuka Lark Drive di browser.</td></tr>
-                <tr><td>Sudah menambah permission tapi tetap ditolak</td><td>Perubahan permission baru aktif setelah membuat versi baru dan disetujui admin. Ulangi langkah 3.</td></tr>
-                <tr><td>Bot tidak bisa ditemukan saat Add Bot</td><td>Aplikasi belum berstatus Released atau kemampuan Bot belum ditambahkan (langkah 1 butir 5).</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p>Untuk detail kegagalan, buka folder <code>logs</code> di sebelah <code>App.exe</code>, atau klik item status di aplikasi untuk melihat log proses tersebut.</p>
-        </section>
-
-        <section class="dstep" id="keamanan">
-          <span class="dnum">09</span>
-          <h2>Keamanan</h2>
-          <ul class="bl">
-            <li>Berikan permission seperlunya saja. Cabut <code>im:chat:readonly</code> setelah Chat ID didapat.</li>
-            <li>Gunakan grup khusus untuk akses folder backup dan batasi siapa yang menjadi anggotanya, karena semua anggota grup ikut mendapat izin edit pada folder tersebut.</li>
-            <li>Jika App Secret bocor, buat ulang lewat <b class="ui">Credentials &amp; Basic Info</b>, lalu perbarui di menu Setting aplikasi backup.</li>
-            <li>Batasi akses ke folder aplikasi backup di komputer, karena App Secret tersimpan di berkas konfigurasi lokal.</li>
-          </ul>
-          <p>Butuh bantuan atau ingin membeli license key aplikasi? Hubungi <a class="lnk" href="mailto:customerservice@ptga.my.id">customerservice@ptga.my.id</a>.</p>
-        </section>
-
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </main>
-
 <footer id="footer">
-  <div class="container">
-    <div class="fi">
-      <div class="flogo">PT<span>GA</span></div>
-      <nav class="flinks">
-        <a href="index.html">Beranda</a>
-        <a href="https://github.com/dafaprasetya/FTP-LARK-Backup-SQL-Release/releases/tag/v1.1" target="_blank" rel="noopener">Unduh</a>
-        <a href="#bot">Buat Bot</a>
-        <a href="#permission">Permission</a>
-        <a href="#folder">Folder</a>
-        <a href="#masalah">Masalah</a>
-      </nav>
-      <div class="fdiv"></div>
-      <p class="fcopy">&copy; <span id="yr"></span> <span style="color:var(--gold)">PTGA</span> &mdash; Seluruh hak cipta dilindungi.</p>
-    </div>
-  </div>
+<div class="container">
+<div class="fi">
+<div class="flogo">PT<span>GA</span></div>
+<nav class="flinks">
+<a href="index.html"><span class="id">Beranda</span><span class="en">Home</span></a>
+<a href="https://github.com/dafaprasetya/FTP-LARK-Backup-SQL-Release/releases/tag/v1.1" rel="noopener" target="_blank"><span class="id">Unduh</span><span class="en">Download</span></a>
+<a href="#bot"><span class="id">Buat Bot</span><span class="en">Create Bot</span></a>
+<a href="#permission"><span class="id">Permission</span><span class="en">Permissions</span></a>
+<a href="#folder">Folder</a>
+<a href="#masalah"><span class="id">Masalah</span><span class="en">Troubleshooting</span></a>
+</nav>
+<div class="fdiv"></div>
+<p class="fcopy">© <span id="yr"></span> <span style="color:var(--gold)">PTGA</span> — <span class="id">Seluruh hak cipta dilindungi.</span><span class="en">All rights reserved.</span></p>
+</div>
+</div>
 </footer>
-
 <script>
 (function(){
   'use strict';
@@ -354,13 +365,43 @@ b.ui{font-weight:600;color:var(--white)}
 
   var nb = document.getElementById('nb');
   window.addEventListener('scroll', function(){
-    nb.classList[window.scrollY > 40 ? 'add' : 'remove']('sc');
+    nb.classList[window.scrollY > 40 ? 'add' : 'remove']('scrolled');
   }, {passive:true});
 
   var hbg = document.getElementById('hbg'), mm = document.getElementById('mm');
   hbg.addEventListener('click', function(){ hbg.classList.toggle('open'); mm.classList.toggle('open'); });
   mm.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', function(){ hbg.classList.remove('open'); mm.classList.remove('open'); });
+  });
+
+  /* Pergantian bahasa */
+  var META = {
+    id:{t:'Dokumentasi Setup Bot Lark – SQL Backup to Lark Drive & FTP | PTGA',
+        d:'Panduan membuat bot Lark, mengatur permission, membagikan folder Lark Drive ke grup, dan menghubungkannya dengan aplikasi SQL Backup to Lark Drive & FTP.'},
+    en:{t:'Lark Bot Setup Documentation – SQL Backup to Lark Drive & FTP | PTGA',
+        d:'A guide to creating a Lark bot, setting permissions, sharing a Lark Drive folder with a group, and connecting it to the SQL Backup to Lark Drive & FTP app.'}
+  };
+  function setLang(l){
+    document.documentElement.lang = l;
+    document.title = META[l].t;
+    var md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute('content', META[l].d);
+    document.querySelectorAll('.lb').forEach(function(b){ b.classList[b.getAttribute('data-l') === l ? 'add' : 'remove']('act'); });
+    try { localStorage.setItem('ptga_doc_lang', l); } catch(e) {}
+  }
+  document.querySelectorAll('.lb').forEach(function(b){
+    b.addEventListener('click', function(){ setLang(b.getAttribute('data-l')); });
+  });
+  setLang(document.documentElement.lang === 'en' ? 'en' : 'id');
+
+  /* Navigasi anchor: scroll manual ke target, berlaku untuk setiap klik, berapa kali pun */
+  document.querySelectorAll('#nb a[href^="#"], .toc a[href^="#"], #footer a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      if (!t) return;
+      e.preventDefault();
+      t.scrollIntoView({behavior:'smooth', block:'start'});
+      if (history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
+    });
   });
 
   /* Sorot item daftar isi sesuai posisi scroll */
