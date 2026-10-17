@@ -20,6 +20,17 @@ document.documentElement.lang=l;})();
 </script>
 <style>
 /* Halaman dokumentasi: melengkapi style.css, memakai variabel warna yang sama */
+/* Hero dua kolom: teks di kiri, screenshot aplikasi di kanan */
+.d-hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:44px;align-items:center}
+.d-hero-text .hs{margin-bottom:32px}
+.d-hero h1{font-size:clamp(1.9rem,2.9vw,2.8rem)}
+.d-shot{position:relative;margin:0}
+.d-shot::before{content:'';position:absolute;inset:-18px;background:radial-gradient(circle at 50% 40%,rgba(201,168,76,.16),transparent 68%);filter:blur(24px);z-index:0;pointer-events:none}
+.d-shot a{position:relative;z-index:1;display:block;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--dark2);box-shadow:0 28px 70px rgba(0,0,0,.6);transition:var(--tr);cursor:zoom-in}
+.d-shot a:hover{border-color:rgba(201,168,76,.5);transform:translateY(-4px)}
+.d-shot img{width:100%;height:auto}
+@media(max-width:1000px){.d-hero-grid{grid-template-columns:minmax(0,1fr);gap:40px}.d-hero h1{font-size:clamp(2.2rem,7vw,3.2rem)}}
+
 /* Bahasa: setiap teks punya dua span (id dan en), satu disembunyikan sesuai atribut lang di <html> */
 .id,.en{display:contents}
 html[lang="id"] .en,html[lang="en"] .id{display:none!important}
@@ -137,13 +148,21 @@ b.ui{font-weight:600;color:var(--white)}
 <div class="orb o2"></div>
 <div class="hgrid"></div>
 <div class="container">
+<div class="d-hero-grid">
+<div class="d-hero-text">
 <div class="hey"><span class="heyline"></span><span class="heytext"><span class="id">Dokumentasi</span><span class="en">Documentation</span></span></div>
 <h1><span class="id">Setup <em>bot Lark</em> untuk SQL Backup to Lark Drive &amp; FTP</span><span class="en">Setting up the <em>Lark bot</em> for SQL Backup to Lark Drive &amp; FTP</span></h1>
 <p class="hs"><span class="id">Panduan membuat aplikasi bot di Lark, memberi permission upload dan kirim pesan, membagikan folder Lark Drive ke grup yang berisi bot, lalu menghubungkannya ke aplikasi backup.</span><span class="en">A guide to creating a bot app in Lark, granting upload and messaging permissions, sharing a Lark Drive folder with the group that contains the bot, and connecting it to the backup application.</span></p>
 <div class="hcta">
 <a class="btn-p" href="https://github.com/dafaprasetya/FTP-LARK-Backup-SQL-Release/releases/tag/v1.1" rel="noopener" target="_blank"><span class="id">Unduh aplikasi v1.1</span><span class="en">Download app v1.1</span></a>
 <a class="btn-o" href="#bot"><span class="id">Mulai dari langkah 1</span><span class="en">Start at step 1</span></a>
-<a class="btn-o" href="#masalah"><span class="id">Pemecahan masalah</span><span class="en">Troubleshooting</span></a>
+</div>
+</div>
+<figure class="d-shot">
+<a href="img/app-screenshot.png" target="_blank" rel="noopener" aria-label="Buka screenshot ukuran penuh">
+<img src="img/app-screenshot.png" width="1364" height="767" alt="Tampilan aplikasi FTP and Lark Backup SQL" data-alt-id="Tampilan aplikasi FTP and Lark Backup SQL" data-alt-en="FTP and Lark Backup SQL application window" fetchpriority="high">
+</a>
+</figure>
 </div>
 <div class="d-meta">
 <div><span class="id"><strong>8 langkah</strong>dari nol sampai backup pertama</span><span class="en"><strong>8 steps</strong>from scratch to your first backup</span></div>
@@ -386,6 +405,8 @@ b.ui{font-weight:600;color:var(--white)}
     document.title = META[l].t;
     var md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute('content', META[l].d);
     document.querySelectorAll('.lb').forEach(function(b){ b.classList[b.getAttribute('data-l') === l ? 'add' : 'remove']('act'); });
+    document.querySelectorAll('img[data-alt-id]').forEach(function(im){ im.alt = im.getAttribute('data-alt-' + l); });
+    document.querySelectorAll('.d-shot a').forEach(function(a){ a.setAttribute('aria-label', l === 'en' ? 'Open full-size screenshot' : 'Buka screenshot ukuran penuh'); });
     try { localStorage.setItem('ptga_doc_lang', l); } catch(e) {}
   }
   document.querySelectorAll('.lb').forEach(function(b){
