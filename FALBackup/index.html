@@ -31,7 +31,42 @@ document.documentElement.lang=l;})();
 .d-shot img{width:100%;height:auto}
 @media(max-width:1000px){.d-hero-grid{grid-template-columns:minmax(0,1fr);gap:40px}.d-hero h1{font-size:clamp(2.2rem,7vw,3.2rem)}}
 
-/* Bahasa: setiap teks punya dua span (id dan en), satu disembunyikan sesuai atribut lang di <html> */
+/* Navbar lebih rapat karena tautan bertambah */
+.nlinks{gap:24px}
+@media(max-width:1180px){.nlinks{gap:16px}.nlinks a{font-size:.72rem;letter-spacing:.07em}}
+.btn-g{border-color:rgba(201,168,76,.55);color:var(--gold)}
+.d-hero .hcta{gap:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Pricing */
+#pricing{background:var(--black);position:relative;padding:100px 0;scroll-margin-top:60px}
+#pricing::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pr-head{text-align:center;margin-bottom:52px}
+.pr-head .section-sub{margin:0 auto;text-align:center}
+.pw{border:1px solid var(--border);border-radius:var(--radius);background:var(--dark2);overflow-x:auto;max-width:860px;margin:0 auto}
+.ptable{width:100%;border-collapse:separate;border-spacing:0;min-width:600px}
+.ptable th,.ptable td{padding:15px 22px;text-align:center;border-top:1px solid rgba(255,255,255,.06);font-size:.9rem;color:var(--white2);vertical-align:middle}
+.ptable thead th{border-top:none;padding:34px 22px 26px;vertical-align:bottom}
+.ptable th:first-child,.ptable td:first-child{text-align:left;width:38%}
+.ptable tbody td:first-child{color:var(--white)}
+.ptable .hl{background:rgba(201,168,76,.06);border-left:1px solid rgba(201,168,76,.3);border-right:1px solid rgba(201,168,76,.3)}
+.ptable thead .hl{border-top:2px solid var(--gold)}
+.ptable tfoot td{padding:26px 22px 30px}
+.ptable tfoot .hl{border-bottom:1px solid rgba(201,168,76,.3)}
+.pbadge{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;background:var(--maroon);color:var(--white);padding:3px 10px;border-radius:3px;margin-bottom:10px;font-weight:600}
+.pname{font-family:var(--fd);font-size:1.35rem;font-weight:600;color:var(--white);display:block;margin-bottom:6px}
+.pprice{font-family:var(--fd);font-size:2.7rem;font-weight:700;color:var(--gold);line-height:1.1;display:block}
+.psub{font-size:.78rem;color:var(--white2);display:block;margin-top:6px;line-height:1.5;font-weight:400}
+.ck{color:var(--gold);font-weight:700;font-size:1.05rem}
+.ptable .btn-p,.ptable .btn-o{width:100%;justify-content:center;padding:15px 18px}
+.pr-note{max-width:860px;margin:18px auto 0;font-size:.8rem;color:var(--gray);line-height:1.7;text-align:center}
+.pr-note a{color:var(--gold);border-bottom:1px solid rgba(201,168,76,.4)}
+@media(max-width:600px){#pricing{padding:64px 0}.pprice{font-size:2.2rem}.ptable th,.ptable td{padding:13px 14px}}
+
+/* Navbar lebih rapat karena tautan bertambah */.nlinks{gap:24px}@media(max-width:1180px){.nlinks{gap:16px}.nlinks a{font-size:.72rem;letter-spacing:.07em}}.btn-g{border-color:rgba(201,168,76,.55);color:var(--gold)}.d-hero .hcta{gap:12px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}/* Pricing */#pricing{background:var(--black);position:relative;padding:100px 0;scroll-margin-top:60px}#pricing::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}.pr-head{text-align:center;margin-bottom:52px}.pr-head .section-sub{margin:0 auto;text-align:center}.pw{border:1px solid var(--border);border-radius:var(--radius);background:var(--dark2);overflow-x:auto;max-width:860px;margin:0 auto}
+.ptable{width:100%;border-collapse:separate;border-spacing:0;min-width:600px}.ptable th,.ptable td{padding:15px 22px;text-align:center;border-top:1px solid rgba(255,255,255,.06);font-size:.9rem;color:var(--white2);vertical-align:middle}.ptable thead th{border-top:none;padding:34px 22px 26px;vertical-align:bottom}.ptable th:first-child,.ptable td:first-child{text-align:left;width:38%}.ptable tbody td:first-child{color:var(--white)}.ptable .hl{background:rgba(201,168,76,.06);border-left:1px solid rgba(201,168,76,.3);border-right:1px solid rgba(201,168,76,.3)}.ptable thead .hl{border-top:2px solid var(--gold)}.ptable tfoot td{padding:26px 22px 30px}.ptable tfoot .hl{border-bottom:1px solid rgba(201,168,76,.3)}.pbadge{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;background:var(--maroon);color:var(--white);padding:3px 10px;border-radius:3px;margin-bottom:10px;font-weight:600}.pname{font-family:var(--fd);font-size:1.35rem;font-weight:600;color:var(--white);display:block;margin-bottom:6px}.pprice{font-family:var(--fd);font-size:2.7rem;font-weight:700;color:var(--gold);line-height:1.1;display:block}.psub{font-size:.78rem;color:var(--white2);display:block;margin-top:6px;line-height:1.5;font-weight:400}.ck{color:var(--gold);font-weight:700;font-size:1.05rem}.ptable .btn-p,.ptable .btn-o{width:100%;justify-content:center;padding:15px 18px}.pr-note{max-width:860px;margin:18px auto 0;font-size:.8rem;color:var(--gray);line-height:1.7;text-align:center}.pr-note a{color:var(--gold);border-bottom:1px solid rgba(201,168,76,.4)}@media(max-width:600px){#pricing{padding:64px 0}.pprice{font-size:2.2rem}.ptable th,.ptable td{padding:13px 14px}}/* Navbar lebih rapat karena tautan bertambah */.nlinks{gap:24px}@media(max-width:1180px){.nlinks{gap:16px}.nlinks a{font-size:.72rem;letter-spacing:.07em}}.btn-g{border-color:rgba(201,168,76,.55);color:var(--gold)}.d-hero .hcta{gap:12px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}/* Pricing */#pricing{background:var(--black);position:relative;padding:100px 0;scroll-margin-top:60px}#pricing::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}.pr-head{text-align:center;margin-bottom:52px}.pr-head .section-sub{margin:0 auto;text-align:center}.pw{border:1px solid var(--border);border-radius:var(--radius);background:var(--dark2);overflow-x:auto;max-width:860px;margin:0 auto}
+.ptable{width:100%;border-collapse:separate;border-spacing:0;min-width:600px}.ptable th,.ptable td{padding:15px 22px;text-align:center;border-top:1px solid rgba(255,255,255,.06);font-size:.9rem;color:var(--white2);vertical-align:middle}.ptable thead th{border-top:none;padding:34px 22px 26px;vertical-align:bottom}.ptable th:first-child,.ptable td:first-child{text-align:left;width:38%}.ptable tbody td:first-child{color:var(--white)}.ptable .hl{background:rgba(201,168,76,.06);border-left:1px solid rgba(201,168,76,.3);border-right:1px solid rgba(201,168,76,.3)}.ptable thead .hl{border-top:2px solid var(--gold)}.ptable tfoot td{padding:26px 22px 30px}.ptable tfoot .hl{border-bottom:1px solid rgba(201,168,76,.3)}.pbadge{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;background:var(--maroon);color:var(--white);padding:3px 10px;border-radius:3px;margin-bottom:10px;font-weight:600}.pname{font-family:var(--fd);font-size:1.35rem;font-weight:600;color:var(--white);display:block;margin-bottom:6px}.pprice{font-family:var(--fd);font-size:2.7rem;font-weight:700;color:var(--gold);line-height:1.1;display:block}.psub{font-size:.78rem;color:var(--white2);display:block;margin-top:6px;line-height:1.5;font-weight:400}.ck{color:var(--gold);font-weight:700;font-size:1.05rem}.ptable .btn-p,.ptable .btn-o{width:100%;justify-content:center;padding:15px 18px}.pr-note{max-width:860px;margin:18px auto 0;font-size:.8rem;color:var(--gray);line-height:1.7;text-align:center}.pr-note a{color:var(--gold);border-bottom:1px solid rgba(201,168,76,.4)}@media(max-width:600px){#pricing{padding:64px 0}.pprice{font-size:2.2rem}.ptable th,.ptable td{padding:13px 14px}}/* Navbar lebih rapat karena tautan bertambah */.nlinks{gap:24px}@media(max-width:1180px){.nlinks{gap:16px}.nlinks a{font-size:.72rem;letter-spacing:.07em}}.btn-g{border-color:rgba(201,168,76,.55);color:var(--gold)}.d-hero .hcta{gap:12px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}/* Pricing */#pricing{background:var(--black);position:relative;padding:100px 0;scroll-margin-top:60px}#pricing::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}.pr-head{text-align:center;margin-bottom:52px}.pr-head .section-sub{margin:0 auto;text-align:center}.pw{border:1px solid var(--border);border-radius:var(--radius);background:var(--dark2);overflow-x:auto;max-width:860px;margin:0 auto}
+.ptable{width:100%;border-collapse:separate;border-spacing:0;min-width:600px}.ptable th,.ptable td{padding:15px 22px;text-align:center;border-top:1px solid rgba(255,255,255,.06);font-size:.9rem;color:var(--white2);vertical-align:middle}.ptable thead th{border-top:none;padding:34px 22px 26px;vertical-align:bottom}.ptable th:first-child,.ptable td:first-child{text-align:left;width:38%}.ptable tbody td:first-child{color:var(--white)}.ptable .hl{background:rgba(201,168,76,.06);border-left:1px solid rgba(201,168,76,.3);border-right:1px solid rgba(201,168,76,.3)}.ptable thead .hl{border-top:2px solid var(--gold)}.ptable tfoot td{padding:26px 22px 30px}.ptable tfoot .hl{border-bottom:1px solid rgba(201,168,76,.3)}.pbadge{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;background:var(--maroon);color:var(--white);padding:3px 10px;border-radius:3px;margin-bottom:10px;font-weight:600}.pname{font-family:var(--fd);font-size:1.35rem;font-weight:600;color:var(--white);display:block;margin-bottom:6px}.pprice{font-family:var(--fd);font-size:2.7rem;font-weight:700;color:var(--gold);line-height:1.1;display:block}.psub{font-size:.78rem;color:var(--white2);display:block;margin-top:6px;line-height:1.5;font-weight:400}.ck{color:var(--gold);font-weight:700;font-size:1.05rem}.ptable .btn-p,.ptable .btn-o{width:100%;justify-content:center;padding:15px 18px}.pr-note{max-width:860px;margin:18px auto 0;font-size:.8rem;color:var(--gray);line-height:1.7;text-align:center}.pr-note a{color:var(--gold);border-bottom:1px solid rgba(201,168,76,.4)}@media(max-width:600px){#pricing{padding:64px 0}.pprice{font-size:2.2rem}.ptable th,.ptable td{padding:13px 14px}}/* Bahasa: setiap teks punya dua span (id dan en), satu disembunyikan sesuai atribut lang di <html> */
 .id,.en{display:contents}
 html[lang="id"] .en,html[lang="en"] .id{display:none!important}
 .lb{font-family:var(--fb)}
@@ -127,6 +162,7 @@ b.ui{font-weight:600;color:var(--white)}
 <a href="#folder">Folder</a>
 <a href="#aplikasi"><span class="id">Aplikasi</span><span class="en">App</span></a>
 <a href="#masalah"><span class="id">Masalah</span><span class="en">Troubleshooting</span></a>
+<a href="#pricing"><span class="id">Harga</span><span class="en">Pricing</span></a>
         <div class="lt"><button type="button" class="lb act" data-l="id" aria-label="Bahasa Indonesia">ID</button><button type="button" class="lb" data-l="en" aria-label="English">EN</button></div>
 </div>
 <button aria-label="Menu" class="hbg" id="hbg"><span></span><span></span><span></span></button>
@@ -140,8 +176,10 @@ b.ui{font-weight:600;color:var(--white)}
 <a href="#folder">Folder</a>
 <a href="#aplikasi"><span class="id">Aplikasi</span><span class="en">App</span></a>
 <a href="#masalah"><span class="id">Masalah</span><span class="en">Troubleshooting</span></a>
+<a href="#pricing"><span class="id">Harga</span><span class="en">Pricing</span></a>
     <div class="lt"><button type="button" class="lb act" data-l="id" aria-label="Bahasa Indonesia">ID</button><button type="button" class="lb" data-l="en" aria-label="English">EN</button></div>
 </div>
+
 </nav>
 <header class="d-hero">
 <div class="orb o1"></div>
@@ -155,6 +193,7 @@ b.ui{font-weight:600;color:var(--white)}
 <p class="hs"><span class="id">Panduan membuat aplikasi bot di Lark, memberi permission upload dan kirim pesan, membagikan folder Lark Drive ke grup yang berisi bot, lalu menghubungkannya ke aplikasi backup.</span><span class="en">A guide to creating a bot app in Lark, granting upload and messaging permissions, sharing a Lark Drive folder with the group that contains the bot, and connecting it to the backup application.</span></p>
 <div class="hcta">
 <a class="btn-p" href="https://github.com/dafaprasetya/FTP-LARK-Backup-SQL-Release/releases/tag/v1.1" rel="noopener" target="_blank"><span class="id">Unduh aplikasi v1.1</span><span class="en">Download app v1.1</span></a>
+<a class="btn-o btn-g" href="#pricing"><span class="id">Dapatkan lisensi</span><span class="en">Get a license</span></a>
 <a class="btn-o" href="#bot"><span class="id">Mulai dari langkah 1</span><span class="en">Start at step 1</span></a>
 </div>
 </div>
@@ -360,6 +399,15 @@ b.ui{font-weight:600;color:var(--white)}
 </div>
 </div>
 </main>
+<section id="pricing"><div class="container"><div class="pr-head"><span class="tag"><span class="id">Harga</span><span class="en">Pricing</span></span><h2 class="section-title"><span class="id">Pilih paket <em style='font-style:italic;color:var(--gold)'>lisensi</em></span><span class="en">Choose a <em style='font-style:italic;color:var(--gold)'>license</em> plan</span></h2><div class="gold-line center"></div><p class="section-sub"><span class="id">Semua fitur sama di kedua paket. Perbedaannya hanya pada masa aktif lisensi.</span><span class="en">Both plans include every feature. The only difference is how long the license stays active.</span></p></div><div class="pw"><table class="ptable"><thead><tr><th><span class="sr"><span class="id">Fitur</span><span class="en">Features</span></span></th><th><span class="pname"><span class="id">1 Bulan</span><span class="en">1 Month</span></span><span class="pprice"><span class="id">Rp250.000</span><span class="en">$14</span></span><span class="psub"><span class="id">per bulan</span><span class="en">per month</span></span></th><th class="hl"><span class="pbadge"><span class="id">Paling hemat</span><span class="en">Best value</span></span><span class="pname"><span class="id">1 Tahun</span><span class="en">1 Year</span></span><span class="pprice"><span class="id">Rp600.000</span><span class="en">$33</span></span><span class="psub"><span class="id">setara Rp50.000 per bulan, hemat 80% dibanding bayar bulanan</span><span class="en">about $2.8 per month, 80% less than paying monthly</span></span></th></tr></thead><tbody><tr><td><span class="id">Masa aktif lisensi</span><span class="en">License duration</span></td><td><span class="id">1 bulan</span><span class="en">1 month</span></td><td class="hl"><span class="id">1 tahun</span><span class="en">1 year</span></td></tr>
+<tr><td><span class="id">Perangkat</span><span class="en">Devices</span></td><td><span class="id">1 perangkat</span><span class="en">1 device</span></td><td class="hl"><span class="id">1 perangkat</span><span class="en">1 device</span></td></tr>
+<tr><td><span class="id">Backup database MySQL dan PostgreSQL</span><span class="en">MySQL and PostgreSQL database backup</span></td><td><span class="ck" aria-hidden="true">&#10003;</span><span class="sr"><span class="id">Termasuk</span><span class="en">Included</span></span></td><td class="hl"><span class="ck" aria-hidden="true">&#10003;</span><span class="sr"><span class="id">Termasuk</span><span class="en">Included</span></span></td></tr>
+<tr><td><span class="id">Upload otomatis ke Lark Drive</span><span class="en">Automatic upload to Lark Drive</span></td><td><span class="ck" aria-hidden="true">&#10003;</span><span class="sr"><span class="id">Termasuk</span><span class="en">Included</span></span></td><td class="hl"><span class="ck" aria-hidden="true">&#10003;</span><span class="sr"><span class="id">Termasuk</span><span class="en">Included</span></span></td></tr>
+<tr><td><span class="id">Salinan tambahan ke FTP / FTPS</span><span class="en">Extra copy to FTP / FTPS</span></td><td><span class="ck" aria-hidden="true">&#10003;</span><span class="sr"><span class="id">Termasuk</span><span class="en">Included</span></span></td><td class="hl"><span class="ck" aria-hidden="true">&#10003;</span><span class="sr"><span class="id">Termasuk</span><span class="en">Included</span></span></td></tr>
+<tr><td><span class="id">Backup otomatis terjadwal setiap hari</span><span class="en">Scheduled automatic daily backup</span></td><td><span class="ck" aria-hidden="true">&#10003;</span><span class="sr"><span class="id">Termasuk</span><span class="en">Included</span></span></td><td class="hl"><span class="ck" aria-hidden="true">&#10003;</span><span class="sr"><span class="id">Termasuk</span><span class="en">Included</span></span></td></tr>
+<tr><td><span class="id">Notifikasi hasil backup ke chat Lark</span><span class="en">Backup result notifications to Lark chat</span></td><td><span class="ck" aria-hidden="true">&#10003;</span><span class="sr"><span class="id">Termasuk</span><span class="en">Included</span></span></td><td class="hl"><span class="ck" aria-hidden="true">&#10003;</span><span class="sr"><span class="id">Termasuk</span><span class="en">Included</span></span></td></tr>
+<tr><td><span class="id">Log lengkap untuk setiap proses</span><span class="en">Full log for every run</span></td><td><span class="ck" aria-hidden="true">&#10003;</span><span class="sr"><span class="id">Termasuk</span><span class="en">Included</span></span></td><td class="hl"><span class="ck" aria-hidden="true">&#10003;</span><span class="sr"><span class="id">Termasuk</span><span class="en">Included</span></span></td></tr></tbody><tfoot><tr><td></td><td><a class="btn-o buy" data-plan="month" href="mailto:customerservice@ptga.my.id"><span class="id">Beli</span><span class="en">Buy</span></a></td><td class="hl"><a class="btn-p buy" data-plan="year" href="mailto:customerservice@ptga.my.id"><span class="id">Beli</span><span class="en">Buy</span></a></td></tr></tfoot></table></div>
+<p class="pr-note"><span class="id">Tombol Beli membuka email ke <a href="mailto:customerservice@ptga.my.id">customerservice@ptga.my.id</a>. Sertakan serial number perangkat Anda (tampil di jendela Aktivasi dan di bagian bawah aplikasi).</span><span class="en">The Buy button opens an email to <a href="mailto:customerservice@ptga.my.id">customerservice@ptga.my.id</a>. Include your device serial number (shown in the Activation window and at the bottom of the app).</span><br><span class="id">Harga dalam rupiah.</span><span class="en">Prices in USD are approximate, converted at about Rp18,050 per US dollar (October 2026), and may vary with the exchange rate.</span></p></div></section>
 <footer id="footer">
 <div class="container">
 <div class="fi">
@@ -371,6 +419,7 @@ b.ui{font-weight:600;color:var(--white)}
 <a href="#permission"><span class="id">Permission</span><span class="en">Permissions</span></a>
 <a href="#folder">Folder</a>
 <a href="#masalah"><span class="id">Masalah</span><span class="en">Troubleshooting</span></a>
+<a href="#pricing"><span class="id">Harga</span><span class="en">Pricing</span></a>
 </nav>
 <div class="fdiv"></div>
 <p class="fcopy">© <span id="yr"></span> <span style="color:var(--gold)">PTGA</span> — <span class="id">Seluruh hak cipta dilindungi.</span><span class="en">All rights reserved.</span></p>
@@ -400,7 +449,59 @@ b.ui{font-weight:600;color:var(--white)}
     en:{t:'Lark Bot Setup Documentation – SQL Backup to Lark Drive & FTP | PTGA',
         d:'A guide to creating a Lark bot, setting permissions, sharing a Lark Drive folder with a group, and connecting it to the SQL Backup to Lark Drive & FTP app.'}
   };
+  var MAIL = {
+    id:{subject:'Pembelian lisensi FTP & LARK Backup SQL - ', plan:{month:'1 bulan',year:'1 tahun'},
+        body:'Halo PTGA,\r\n\r\nSaya ingin membeli lisensi FTP & LARK Backup SQL paket {plan}.\r\n\r\nNama:\r\nPerusahaan:\r\nSerial number perangkat:\r\n'},
+    en:{subject:'FTP & LARK Backup SQL license purchase - ', plan:{month:'1 month',year:'1 year'},
+        body:'Hello PTGA,\r\n\r\nI would like to buy the FTP & LARK Backup SQL license, {plan} plan.\r\n\r\nName:\r\nCompany:\r\nDevice serial number:\r\n'}
+  };
+  function setBuyLinks(l){
+    document.querySelectorAll('a.buy').forEach(function(a){
+      var m = MAIL[l], p = m.plan[a.getAttribute('data-plan')];
+      a.href = 'mailto:customerservice@ptga.my.id?subject=' + encodeURIComponent(m.subject + p) + '&body=' + encodeURIComponent(m.body.replace('{plan}', p));
+    });
+  }
+  var MAIL = {
+    id:{subject:'Pembelian lisensi FTP & LARK Backup SQL - ', plan:{month:'1 bulan',year:'1 tahun'},
+        body:'Halo PTGA,\r\n\r\nSaya ingin membeli lisensi FTP & LARK Backup SQL paket {plan}.\r\n\r\nNama:\r\nPerusahaan:\r\nSerial number perangkat:\r\n'},
+    en:{subject:'FTP & LARK Backup SQL license purchase - ', plan:{month:'1 month',year:'1 year'},
+        body:'Hello PTGA,\r\n\r\nI would like to buy the FTP & LARK Backup SQL license, {plan} plan.\r\n\r\nName:\r\nCompany:\r\nDevice serial number:\r\n'}
+  };
+  function setBuyLinks(l){
+    document.querySelectorAll('a.buy').forEach(function(a){
+      var m = MAIL[l], p = m.plan[a.getAttribute('data-plan')];
+      a.href = 'mailto:customerservice@ptga.my.id?subject=' + encodeURIComponent(m.subject + p) + '&body=' + encodeURIComponent(m.body.replace('{plan}', p));
+    });
+  }
+  var MAIL = {
+    id:{subject:'Pembelian lisensi FTP & LARK Backup SQL - ', plan:{month:'1 bulan',year:'1 tahun'},
+        body:'Halo PTGA,\r\n\r\nSaya ingin membeli lisensi FTP & LARK Backup SQL paket {plan}.\r\n\r\nNama:\r\nPerusahaan:\r\nSerial number perangkat:\r\n'},
+    en:{subject:'FTP & LARK Backup SQL license purchase - ', plan:{month:'1 month',year:'1 year'},
+        body:'Hello PTGA,\r\n\r\nI would like to buy the FTP & LARK Backup SQL license, {plan} plan.\r\n\r\nName:\r\nCompany:\r\nDevice serial number:\r\n'}
+  };
+  function setBuyLinks(l){
+    document.querySelectorAll('a.buy').forEach(function(a){
+      var m = MAIL[l], p = m.plan[a.getAttribute('data-plan')];
+      a.href = 'mailto:customerservice@ptga.my.id?subject=' + encodeURIComponent(m.subject + p) + '&body=' + encodeURIComponent(m.body.replace('{plan}', p));
+    });
+  }
+  var MAIL = {
+    id:{subject:'Pembelian lisensi FTP & LARK Backup SQL - ', plan:{month:'1 bulan',year:'1 tahun'},
+        body:'Halo PTGA,\r\n\r\nSaya ingin membeli lisensi FTP & LARK Backup SQL paket {plan}.\r\n\r\nNama:\r\nPerusahaan:\r\nSerial number perangkat:\r\n'},
+    en:{subject:'FTP & LARK Backup SQL license purchase - ', plan:{month:'1 month',year:'1 year'},
+        body:'Hello PTGA,\r\n\r\nI would like to buy the FTP & LARK Backup SQL license, {plan} plan.\r\n\r\nName:\r\nCompany:\r\nDevice serial number:\r\n'}
+  };
+  function setBuyLinks(l){
+    document.querySelectorAll('a.buy').forEach(function(a){
+      var m = MAIL[l], p = m.plan[a.getAttribute('data-plan')];
+      a.href = 'mailto:customerservice@ptga.my.id?subject=' + encodeURIComponent(m.subject + p) + '&body=' + encodeURIComponent(m.body.replace('{plan}', p));
+    });
+  }
   function setLang(l){
+    setBuyLinks(l);
+    setBuyLinks(l);
+    setBuyLinks(l);
+    setBuyLinks(l);
     document.documentElement.lang = l;
     document.title = META[l].t;
     var md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute('content', META[l].d);
